@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURA GLOW STUDIO | Luxury Salon & Aesthetic Clinic</title>
+  <meta name="description" content="Aura Glow Studio delivers bespoke hair artistry, advanced medical dermatology, and restorative spa therapies in an atmosphere of pure architectural tranquility.">
+  <meta name="keywords" content="Luxury Salon, Aesthetic Clinic, Balayage, Hydrafacial, Medical Dermatology, Deep Tissue Massage, Bridal Makeover, Beverly Hills Spa">
+
+  <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            ivory: {
+              DEFAULT: '#FCFBF7',
+              50: '#FFFFFF',
+              100: '#FAF8F3',
+              200: '#F4EFE6',
+              300: '#EADFCF',
+              muted: '#E3DAC9'
+            },
+            charcoal: {
+              DEFAULT: '#161616',
+              950: '#0B0B0B',
+              900: '#111111',
+              850: '#161616',
+              800: '#1D1D1D',
+              700: '#2A2A2A',
+              600: '#3D3D3D',
+              muted: '#8E8E8E'
+            },
+            gold: {
+              DEFAULT: '#C5A059',
+              light: '#DFBF7C',
+              dark: '#9E7D3B',
+              glow: 'rgba(197, 160, 89, 0.25)',
+              border: 'rgba(197, 160, 89, 0.35)'
+            },
+            bronze: {
+              DEFAULT: '#8C6D4F',
+              light: '#A78564',
+              dark: '#684E34'
+            }
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif']
+          },
+          boxShadow: {
+            'luxury': '0 20px 40px -15px rgba(0, 0, 0, 0.35)',
+            'gold-glow': '0 0 25px rgba(197, 160, 89, 0.3)',
+            'gold-glow-lg': '0 0 40px rgba(197, 160, 89, 0.45)',
+            'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)'
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Custom Luxury Styling & Utility Adjustments */
+    ::selection {
+      background-color: #C5A059;
+      color: #161616;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #161616;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #8C6D4F;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #C5A059;
+    }
+
+    /* Glassmorphism Styles */
+    .glass-nav {
+      background: rgba(22, 22, 22, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+    }
+
+    .glass-card {
+      background: rgba(22, 22, 22, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(197, 160, 89, 0.2);
+    }
+
+    .glass-card-light {
+      background: rgba(252, 251, 247, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(197, 160, 89, 0.25);
+    }
+
+    /* Gold Gradient Text & Backgrounds */
+    .text-gold-gradient {
+      background: linear-gradient(135deg, #F3E2BD 0%, #C5A059 50%, #9E7D3B 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .bg-gold-gradient {
+      background: linear-gradient(135deg, #DFBF7C 0%, #C5A059 50%, #9E7D3B 100%);
+    }
+
+    .bg-bronze-gradient {
+      background: linear-gradient(135deg, #A78564 0%, #8C6D4F 50%, #684E34 100%);
+    }
+
+    /* Subtle Animated Shimmer */
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .shimmer-bar {
+      background: linear-gradient(90deg, #161616 0%, #2A241C 25%, #C5A059 50%, #2A241C 75%, #161616 100%);
+      background-size: 200% 100%;
+      animation: shimmer 10s infinite linear;
+    }
+
+    /* Subtle Card Zoom Animation */
+    .service-card-image {
+      transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .service-card:hover .service-card-image {
+      transform: scale(1.08);
+    }
+
+    /* Gold Border Accent Hover */
+    .gold-button {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+    .gold-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+      transition: all 0.6s ease;
+    }
+    .gold-button:hover::before {
+      left: 100%;
+    }
+
+    /* Elegant Ornamental Divider */
+    .ornament-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .ornament-line::before,
+    .ornament-line::after {
+      content: '';
+      height: 1px;
+      width: 60px;
+      background: linear-gradient(90deg, transparent, #C5A059, transparent);
+    }
+  </style>
+</head>
+<body class="bg-ivory text-charcoal font-sans antialiased overflow-x-hidden selection:bg-gold selection:text-charcoal-900">
+
+  <!-- ========================================================================= -->
+  <!-- 1. TOP ANNOUNCEMENT BAR                                                   -->
+  <!-- ========================================================================= -->
+  <div class="shimmer-bar text-ivory py-2.5 px-4 text-xs md:text-sm font-medium tracking-widest uppercase border-b border-gold/30 relative z-50">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+      <div class="flex items-center justify-center gap-2.5">
+        <span class="inline-block w-2 h-2 rounded-full bg-gold animate-pulse"></span>
+        <span class="text-ivory-100 font-semibold tracking-wider">Aura Glow Studio</span>
+        <span class="text-gold/60 hidden sm:inline">|</span>
+        <span class="text-ivory-200 hidden md:inline">Open Daily 9:00 AM – 9:00 PM</span>
+        <span class="text-gold/60 hidden md:inline">|</span>
+        <span class="text-gold-light hidden lg:inline">Priority Care & Custom Bridal Packages Available</span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-semibold">
+        <a href="tel:+18005552872" class="text-ivory hover:text-gold transition-colors flex items-center gap-1.5">
+          <i class="fa-solid fa-phone text-gold text-xs"></i>
+          <span>+1 (800) 555-AURA</span>
+        </a>
+        <span class="text-gold/40">|</span>
+        <a href="#booking-modal" onclick="openBookingModal('General VIP Appointment')" class="text-gold-light hover:underline flex items-center gap-1">
+          <i class="fa-regular fa-calendar-check"></i>
+          <span>VIP Desk</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 2. NAVBAR                                                                 -->
+  <!-- ========================================================================= -->
+  <header id="main-header" class="glass-nav sticky top-0 z-40 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20 sm:h-24">
+        
+        <!-- Logo & Monogram -->
+        <a href="#" class="group flex items-center gap-3.5 focus:outline-none">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-gold/60 flex items-center justify-center bg-charcoal-900 group-hover:border-gold group-hover:shadow-gold-glow transition-all duration-300">
+            <span class="font-serif text-gold text-lg sm:text-xl font-bold tracking-tighter">AG</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-serif text-lg sm:text-2xl font-bold tracking-[0.2em] text-ivory group-hover:text-gold-light transition-colors">
+              AURA GLOW
+            </span>
+            <span class="text-[9px] sm:text-[10px] tracking-[0.35em] text-gold uppercase font-medium">
+              Salon & Aesthetic Clinic
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center gap-8 text-xs font-semibold uppercase tracking-[0.2em] text-ivory-200">
+          <a href="#about" class="hover:text-gold transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-[1px] after:bg-gold after:transition-all after:duration-300">
+            About Our Sanctuary
+          </a>
+          <a href="#services" class="hover:text-gold transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-[1px] after:bg-gold after:transition-all after:duration-300">
+            Service Menu
+          </a>
+          <a href="#client-care" class="hover:text-gold transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-[1px] after:bg-gold after:transition-all after:duration-300">
+            Client Care
+          </a>
+          <a href="#contact" class="hover:text-gold transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-[1px] after:bg-gold after:transition-all after:duration-300">
+            Contact
+          </a>
+        </nav>
+
+        <!-- Right CTA & Mobile Toggle -->
+        <div class="flex items-center gap-4">
+          <!-- Luxury Gold Button -->
+          <button onclick="openBookingModal('General Appointment')" class="gold-button hidden sm:inline-flex items-center gap-2.5 px-6 py-2.5 text-xs font-semibold tracking-[0.2em] uppercase rounded-full text-charcoal bg-gold-gradient hover:shadow-gold-glow border border-gold-light transition-all transform hover:-translate-y-0.5">
+            <i class="fa-regular fa-clock text-xs"></i>
+            <span>Book Appointment</span>
+          </button>
+
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-btn" aria-label="Toggle Navigation Menu" class="lg:hidden w-10 h-10 rounded-full border border-gold/40 flex items-center justify-center text-gold hover:text-ivory hover:border-gold transition-colors">
+            <i id="mobile-menu-icon" class="fa-solid fa-bars text-lg"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer / Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden glass-nav border-t border-gold/20 px-6 py-6 transition-all duration-300 bg-charcoal-900/95">
+      <div class="flex flex-col space-y-4 text-sm font-medium tracking-[0.2em] uppercase text-ivory-100">
+        <a href="#about" class="mobile-nav-link hover:text-gold py-2 border-b border-charcoal-700">About Our Sanctuary</a>
+        <a href="#services" class="mobile-nav-link hover:text-gold py-2 border-b border-charcoal-700">Service Menu</a>
+        <a href="#client-care" class="mobile-nav-link hover:text-gold py-2 border-b border-charcoal-700">Client Care & Priority Support</a>
+        <a href="#contact" class="mobile-nav-link hover:text-gold py-2 border-b border-charcoal-700">Contact & Hours</a>
+        <div class="pt-2">
+          <button onclick="openBookingModal('General Appointment')" class="w-full text-center py-3 text-xs font-bold tracking-[0.2em] uppercase rounded-full text-charcoal bg-gold-gradient shadow-gold-glow">
+            Book Appointment
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- 3. HERO SECTION                                                           -->
+  <!-- ========================================================================= -->
+  <section class="relative min-h-[90vh] md:min-h-screen flex items-center justify-center bg-charcoal text-ivory overflow-hidden">
+    <!-- Hero Background Image with Overlay -->
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1920&q=80" 
+        alt="Luxury Spa Interior with ambient soft lighting and architectural serenity" 
+        class="w-full h-full object-cover object-center scale-105 animate-pulse duration-1000"
+        style="animation-duration: 8s;"
+      >
+      <!-- Multi-layered Luxury Gradients for Maximum Readability and Mood -->
+      <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/70 to-charcoal/50"></div>
+      <div class="absolute inset-0 bg-radial from-transparent via-charcoal/40 to-charcoal-950/80"></div>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 text-center flex flex-col items-center">
+      
+      <!-- Prestige Tagline Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gold/40 bg-charcoal/60 backdrop-blur-md mb-6 shadow-luxury">
+        <i class="fa-solid fa-sparkles text-gold text-xs"></i>
+        <span class="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.3em] text-gold-light">
+          Haute Salon &amp; Advanced Medical Aesthetics
+        </span>
+      </div>
+
+      <!-- Main Center Heading -->
+      <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-[0.08em] uppercase text-ivory leading-[1.08] mb-6 drop-shadow-lg">
+        Redefine Your <br class="hidden sm:inline" />
+        <span class="font-serif italic text-gold-gradient font-normal">Natural Beauty</span>
+      </h1>
+
+      <!-- Subheading -->
+      <p class="max-w-2xl text-base sm:text-lg md:text-xl text-ivory-200 font-light leading-relaxed mb-10 tracking-wide">
+        Where bespoke hair artistry meets advanced clinical skincare in an atmosphere of pure tranquility.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full max-w-md">
+        <!-- Explore Service Menu -->
+        <a href="#services" class="w-full sm:w-auto px-8 py-4 rounded-full border border-gold text-gold hover:text-charcoal hover:bg-gold text-xs font-semibold uppercase tracking-[0.2em] transition-all duration-300 text-center shadow-luxury">
+          Explore Service Menu
+        </a>
+
+        <!-- Book an Appointment -->
+        <button onclick="openBookingModal('Hero VIP Appointment')" class="gold-button w-full sm:w-auto px-8 py-4 rounded-full bg-gold-gradient text-charcoal hover:shadow-gold-glow text-xs font-bold uppercase tracking-[0.2em] border border-gold-light transition-all duration-300 text-center">
+          Book an Appointment
+        </button>
+      </div>
+
+      <!-- Bottom Pillar Highlights -->
+      <div class="mt-16 sm:mt-20 pt-8 border-t border-gold/20 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center w-full max-w-4xl">
+        <div class="flex flex-col items-center">
+          <i class="fa-solid fa-certificate text-gold mb-2 text-lg"></i>
+          <span class="font-serif text-lg text-ivory font-semibold">Board Certified</span>
+          <span class="text-[11px] text-ivory-muted tracking-wider uppercase">Dermatology Experts</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <i class="fa-solid fa-scissors text-gold mb-2 text-lg"></i>
+          <span class="font-serif text-lg text-ivory font-semibold">Couture Artistry</span>
+          <span class="text-[11px] text-ivory-muted tracking-wider uppercase">Master Balayage Stylists</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <i class="fa-solid fa-spa text-gold mb-2 text-lg"></i>
+          <span class="font-serif text-lg text-ivory font-semibold">Private Suites</span>
+          <span class="text-[11px] text-ivory-muted tracking-wider uppercase">Acoustic Tranquility</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <i class="fa-solid fa-leaf text-gold mb-2 text-lg"></i>
+          <span class="font-serif text-lg text-ivory font-semibold">Clean Clinical</span>
+          <span class="text-[11px] text-ivory-muted tracking-wider uppercase">Bioactive Ingredients</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Soft Scroll Down Indicator -->
+    <a href="#about" aria-label="Scroll to About section" class="absolute bottom-6 left-1/2 -translate-x-1/2 text-gold/70 hover:text-gold transition-colors hidden md:flex flex-col items-center gap-1 z-10 animate-bounce">
+      <span class="text-[10px] uppercase tracking-widest font-mono">Scroll</span>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </a>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 4. OUR SANCTUARY (About Section)                                          -->
+  <!-- ========================================================================= -->
+  <section id="about" class="py-24 sm:py-32 bg-ivory text-charcoal relative overflow-hidden">
+    <!-- Subtle Background Accents -->
+    <div class="absolute -right-32 top-1/4 w-96 h-96 rounded-full bg-gold/5 blur-3xl pointer-events-none"></div>
+    <div class="absolute -left-32 bottom-10 w-96 h-96 rounded-full bg-bronze/5 blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
+        <div class="ornament-line mb-3">
+          <span class="text-xs uppercase tracking-[0.3em] font-semibold text-bronze">Philosophy &amp; Legacy</span>
+        </div>
+        <h2 class="font-serif text-3xl sm:text-5xl font-light tracking-wide uppercase text-charcoal mb-4">
+          Our Sanctuary
+        </h2>
+        <p class="text-charcoal-600 text-sm sm:text-base leading-relaxed">
+          An intimate fusion of advanced clinical dermatology and Parisian salon artistry, designed as a private restorative retreat.
+        </p>
+      </div>
+
+      <!-- 2-Column Luxury Layout -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        
+        <!-- Left Column: Visual Aesthetic Feature with Overlapping Floating Card -->
+        <div class="lg:col-span-6 relative">
+          <!-- Elegant Double Gold/Bronze Border Frame -->
+          <div class="relative mx-auto max-w-md lg:max-w-none">
+            <div class="absolute -inset-3 rounded-2xl border border-gold/40 -rotate-1 hidden sm:block"></div>
+            <div class="absolute -inset-3 rounded-2xl border border-bronze/30 rotate-1 hidden sm:block"></div>
+            
+            <div class="relative rounded-xl overflow-hidden shadow-2xl bg-charcoal">
+              <img 
+                src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1000&q=80" 
+                alt="Aesthetic Clinic Treatment at Aura Glow Studio" 
+                class="w-full h-[450px] sm:h-[550px] object-cover object-center transform hover:scale-105 transition-transform duration-700"
+              >
+              <!-- Soft Gradient on bottom of image -->
+              <div class="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent"></div>
+            </div>
+
+            <!-- Overlapping Floating Luxury Badge -->
+            <div class="absolute -bottom-6 -right-4 sm:-bottom-8 sm:-right-8 bg-charcoal text-ivory p-6 sm:p-7 rounded-xl border border-gold/50 shadow-gold-glow max-w-[260px] sm:max-w-[280px]">
+              <div class="flex items-center gap-2 mb-2">
+                <i class="fa-solid fa-award text-gold text-lg"></i>
+                <span class="text-xs uppercase tracking-[0.2em] text-gold font-bold">Gold Standard</span>
+              </div>
+              <p class="font-serif text-2xl font-semibold text-ivory leading-tight">12+ Years</p>
+              <p class="text-[12px] text-ivory-muted mt-1 leading-snug">
+                Pioneering evidence-based skincare &amp; couture hair transformations.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Storytelling & Clinical Excellence -->
+        <div class="lg:col-span-6 flex flex-col justify-center space-y-6">
+          <div class="inline-flex items-center gap-2 text-gold-dark font-serif italic text-xl">
+            <span>"True elegance begins when science honours your natural individuality."</span>
+          </div>
+
+          <h3 class="font-serif text-2xl sm:text-4xl font-normal text-charcoal leading-snug">
+            Where Certified Dermatologists &amp; Master Hair Stylists Unite Under One Harmonious Roof
+          </h3>
+
+          <p class="text-charcoal-700 text-sm sm:text-base leading-relaxed">
+            Founded with an uncompromising devotion to aesthetic perfection, <strong class="text-charcoal font-semibold">AURA GLOW STUDIO</strong> transcends conventional beauty destinations. Our sanctuary pairs the sterile precision of an elite aesthetic clinic with the sensorial indulgence of an opulent salon.
+          </p>
+
+          <p class="text-charcoal-700 text-sm sm:text-base leading-relaxed">
+            Every guest enters through a custom consultation where board-certified practitioners analyze cellular dermal health, hair follicle vitality, and facial architecture. Whether revitalizing collagen with advanced medical lasers or hand-painting balayage highlights that catch natural light, your experience is entirely bespoke.
+          </p>
+
+          <!-- 3 Feature Pillars -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+            <div class="p-4 rounded-lg bg-ivory-100 border border-gold/25 flex items-start gap-3.5">
+              <div class="w-9 h-9 rounded-full bg-gold/15 flex items-center justify-center text-gold-dark shrink-0">
+                <i class="fa-solid fa-microscope text-sm"></i>
+              </div>
+              <div>
+                <h4 class="font-serif text-base font-semibold text-charcoal">Medical Diagnostics</h4>
+                <p class="text-xs text-charcoal-600 mt-0.5">FDA-cleared multispectral skin diagnostics before every treatment.</p>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-lg bg-ivory-100 border border-gold/25 flex items-start gap-3.5">
+              <div class="w-9 h-9 rounded-full bg-gold/15 flex items-center justify-center text-gold-dark shrink-0">
+                <i class="fa-solid fa-wand-magic-sparkles text-sm"></i>
+              </div>
+              <div>
+                <h4 class="font-serif text-base font-semibold text-charcoal">Bespoke Formulations</h4>
+                <p class="text-xs text-charcoal-600 mt-0.5">Custom peptide serums and ammonia-free European botanical hair tints.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Doctor & Founder Signature Block -->
+          <div class="pt-4 border-t border-gold/20 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full border border-gold/50 overflow-hidden bg-charcoal">
+                <img src="https://images.unsplash.com/photo-1594824813689-d4c3f5963a40?auto=format&fit=crop&w=200&q=80" alt="Dr. Vivienne Sterling" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <div class="font-serif text-base font-semibold text-charcoal">Dr. Vivienne Sterling, MD &amp; Master Stylist Julian Rossi</div>
+                <div class="text-xs text-bronze uppercase tracking-widest">Medical Director &amp; Creative Artistry Lead</div>
+              </div>
+            </div>
+            <div class="font-serif italic text-gold-dark text-xl hidden sm:block">Aura Glow</div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 5. THE SERVICE MENU (6-Card Luxury Grid)                                  -->
+  <!-- ========================================================================= -->
+  <section id="services" class="py-24 sm:py-32 bg-charcoal text-ivory relative">
+    <!-- Subtle Background Glows -->
+    <div class="absolute left-1/2 -translate-x-1/2 top-0 w-full max-w-7xl h-32 bg-gold/5 blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+        <div class="ornament-line mb-3">
+          <span class="text-xs uppercase tracking-[0.3em] font-semibold text-gold">Curated Haute Rituals</span>
+        </div>
+        <h2 class="font-serif text-3xl sm:text-5xl font-light tracking-wide uppercase text-ivory mb-4">
+          The Service Menu
+        </h2>
+        <p class="text-ivory-muted text-sm sm:text-base leading-relaxed">
+          Exquisite aesthetic interventions and indulgent salon artistry crafted to rejuvenate, balance, and illuminate.
+        </p>
+
+        <!-- Service Category Filter Pills -->
+        <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mt-8">
+          <button onclick="filterServices('all')" class="service-filter-btn active-filter px-5 py-2 text-xs font-semibold uppercase tracking-widest rounded-full transition-all duration-300 border border-gold bg-gold text-charcoal" data-filter="all">
+            All Offerings
+          </button>
+          <button onclick="filterServices('salon')" class="service-filter-btn px-5 py-2 text-xs font-semibold uppercase tracking-widest rounded-full transition-all duration-300 border border-charcoal-700 bg-charcoal-800 text-ivory-200 hover:border-gold hover:text-gold" data-filter="salon">
+            Salon &amp; Hair
+          </button>
+          <button onclick="filterServices('clinic')" class="service-filter-btn px-5 py-2 text-xs font-semibold uppercase tracking-widest rounded-full transition-all duration-300 border border-charcoal-700 bg-charcoal-800 text-ivory-200 hover:border-gold hover:text-gold" data-filter="clinic">
+            Clinical Aesthetics
+          </button>
+          <button onclick="filterServices('spa')" class="service-filter-btn px-5 py-2 text-xs font-semibold uppercase tracking-widest rounded-full transition-all duration-300 border border-charcoal-700 bg-charcoal-800 text-ivory-200 hover:border-gold hover:text-gold" data-filter="spa">
+            Spa &amp; Body
+          </button>
+        </div>
+      </div>
+
+      <!-- 6-Card Luxury Grid -->
+      <div id="service-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Card 1: Hair Artistry & Balayage ($120 | 90 Mins) -->
+        <div class="service-card group rounded-2xl overflow-hidden glass-card hover:border-gold transition-all duration-500 flex flex-col hover:shadow-gold-glow" data-category="salon">
+          <!-- Card Image Container with Zoom -->
+          <div class="relative h-64 overflow-hidden bg-charcoal-900">
+            <img 
+              src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80" 
+              alt="Hair Artistry & Balayage" 
+              class="service-card-image w-full h-full object-cover object-center"
+            >
+            <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent opacity-80"></div>
+            
+            <!-- Category Badge -->
+            <div class="absolute top-4 left-4">
+              <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-charcoal-900/90 text-gold border border-gold/40 backdrop-blur-md">
+                Haute Salon
+              </span>
+            </div>
+
+            <!-- Price & Duration Pill -->
+            <div class="absolute bottom-4 right-4 bg-charcoal-900/90 border border-gold/40 px-3.5 py-1.5 rounded-full text-xs font-medium text-ivory backdrop-blur-md flex items-center gap-2">
+              <span class="text-gold-light font-bold text-sm">$120</span>
+              <span class="text-charcoal-muted">|</span>
+              <span class="text-[11px] text-ivory-muted"><i class="fa-regular fa-clock text-gold mr-1"></i>90 Mins</span>
+            </div>
+          </div>
+
+          <!-- Card Body -->
+          <div class="p-6 sm:p-7 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-serif text-2xl font-normal text-ivory group-hover:text-gold-light transition-colors mb-2.5">
+                Hair Artistry &amp; Balayage
+              </h3>
+              <p class="text-ivory-muted text-xs sm:text-sm leading-relaxed mb-6">
+                Hand-painted dimensional balayage tailored to your facial symmetry. Includes organic gloss toner, custom bond builder, and signature blowout.
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-charcoal-700 flex items-center justify-between">
+              <span class="text-[11px] uppercase tracking-wider text-bronze-light">Styling Suite 01</span>
+              <button 
+                onclick="openBookingModal('Hair Artistry & Balayage', 120, '90 Mins')"
+                class="px-4 py-2 rounded-full border border-gold text-gold hover:bg-gold hover:text-charcoal text-xs font-semibold uppercase tracking-wider transition-colors flex items-center gap-1.5"
+              >
+                <span>Reserve</span>
+                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Luxury Hydrafacial ($160 | 60 Mins) -->
+        <div class="service-card group rounded-2xl overflow-hidden glass-card hover:border-gold transition-all duration-500 flex flex-col hover:shadow-gold-glow" data-category="clinic">
+          <!-- Card Image Container with Zoom -->
+          <div class="relative h-64 overflow-hidden bg-charcoal-900">
+            <img 
+              src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=800&q=80" 
+              alt="Luxury Hydrafacial" 
+              class="service-card-image w-full h-full object-cover object-center"
+            >
+            <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent opacity-80"></div>
+            
+            <!-- Category Badge -->
+            <div class="absolute top-4 left-4">
+              <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-charcoal-900/90 text-gold border border-gold/40 backdrop-blur-md">
+                Clinical Aesthetic
+              </span>
+            </div>
+
+            <!-- Price & Duration Pill -->
+            <div class="absolute bottom-4 right-4 bg-charcoal-900/90 border border-gold/40 px-3.5 py-1.5 rounded-full text-xs font-medium text-ivory backdrop-blur-md flex items-center gap-2">
+              <span class="text-gold-light font-bold text-sm">$160</span>
+              <span class="text-charcoal-muted">|</span>
+              <span class="text-[11px] text-ivory-muted"><i class="fa-regular fa-clock text-gold mr-1"></i>60 Mins</span>
+            </div>
+          </div>
+
+          <!-- Card Body -->
+          <div class="p-6 sm:p-7 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-serif text-2xl font-normal text-ivory group-hover:text-gold-light transition-colors mb-2.5">
+                Luxury Hydrafacial
+              </h3>
+              <p class="text-ivory-muted text-xs sm:text-sm leading-relaxed mb-6">
+                Patented vortex vacuum extraction, lactic acid exfoliation, followed by deep hyaluronic peptide saturation for an immediate glass-skin luminosity.
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-charcoal-700 flex items-center justify-between">
+              <span class="text-[11px] uppercase tracking-wider text-bronze-light">Clinical Room A</span>
+              <button 
+                onclick="openBookingModal('Luxury Hydrafacial', 160, '60 Mins')"
+                class="px-4 py-2 rounded-full border border-gold text-gold hover:bg-gold hover:text-charcoal text-xs font-semibold uppercase tracking-wider transition-colors flex items-center gap-1.5"
+              >
+                <span>Reserve</span>
+                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Deep Tissue & Stone Massage ($140 | 75 Mins) -->
+        <div class="service-card group rounded-2xl overflow-hidden glass-card hover:border-gold transition-all duration-500 flex flex-col hover:shadow-gold-glow" data-category="spa">
+          <!-- Card Image Container with Zoom -->
+          <div class="relative h-64 overflow-hidden bg-charcoal-900">
+            <img 
+              src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=80" 
+              alt="Deep Tissue & Stone Massage" 
+              class="service-card-image w-full h-full object-cover object-center"
+            >
+            <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent opacity-80"></div>
+            
+            <!-- Category Badge -->
+            <div class="absolute top-4 left-4">
+              <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-charcoal-900/90 text-gold border border-gold/40 backdrop-blur-md">
+                Spa &amp; Body
+              </span>
+            </div>
+
+            <!-- Price & Duration Pill -->
+            <div class="absolute bottom-4 right-4 bg-charcoal-900/90 border border-gold/40 px-3.5 py-1.5 rounded-full text-xs font-medium text-ivory backdrop-blur-md flex items-center gap-2">
+              <span class="text-gold-light font-bold text-sm">$140</span>
+              <span class="text-charcoal-muted">|</span>
+              <span class="text-[11px] text-ivory-muted"><i class="fa-regular fa-clock text-gold mr-1"></i>75 Mins</span>
+            </div>
+          </div>
+
+          <!-- Card Body -->
+          <div class="p-6 sm:p-7 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-serif text-2xl font-normal text-ivory group-hover:text-gold-light transition-colors mb-2.5">
+                Deep Tissue &amp; Stone Massage
+              </h3>
+              <p class="text-ivory-muted text-xs sm:text-sm leading-relaxed mb-6">
+                Therapeutic heated volcanic basalt stones target deep chronic tension, paired with botanical bergamot body oils in a darkened sound-insulated sanctuary.
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-charcoal-700 flex items-center justify-between">
+              <span class="text-[11px] uppercase tracking-wider text-bronze-light">Tranquility Suite</span>
+              <button 
+                onclick="openBookingModal('Deep Tissue & Stone Massage', 140, '75 Mins')"
+                class="px-4 py-2 rounded-full border border-gold text-gold hover:bg-gold hover:text-charcoal text-xs font-semibold uppercase tracking-wider transition-colors flex items-center gap-1.5"
+              >
+                <span>Reserve</span>
+                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Laser Skin Consultation ($75 | 30 Mins) -->
+        <div class="service-card group rounded-2xl overflow-hidden glass-card hover:border-gold transition-all duration-500 flex flex-col hover:shadow-gold-glow" data-category="clinic">
+          <!-- Card Image Container with Zoom -->
+          <div class="relative h-64 overflow-hidden bg-charcoal-900">
+            <img 
+              src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=800&q=80" 
+              alt="Laser Skin Consultation" 
+              class="service-card-image w-full h-full object-cover object-center"
+            >
+            <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent opacity-80"></div>
+            
+            <!-- Category Badge -->
+            <div class="absolute top-4 left-4">
+              <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-charcoal-900/90 text-gold border border-gold/40 backdrop-blur-md">
+                Medical Dermatology
+              </span>
+            </div>
+
+            <!-- Price & Duration Pill -->
+            <div class="absolute bottom-4 right-4 bg-charcoal-900/90 border border-gold/40 px-3.5 py-1.5 rounded-full text-xs font-medium text-ivory backdrop-blur-md flex items-center gap-2">
+              <span class="text-gold-light font-bold text-sm">$75</span>
+              <span class="text-charcoal-muted">|</span>
+              <span class="text-[11px] text-ivory-muted"><i class="fa-regular fa-clock text-gold mr-1"></i>30 Mins</span>
+            </div>
+          </div>
+
+          <!-- Card Body -->
+          <div class="p-6 sm:p-7 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-serif text-2xl font-normal text-ivory group-hover:text-gold-light transition-colors mb-2.5">
+                Laser Skin Consultation
+              </h3>
+              <p class="text-ivory-muted text-xs sm:text-sm leading-relaxed mb-6">
+                Comprehensive multispectral dermal imaging session with our senior dermatologists to map pigmentation, vascularity, and design your targeted laser protocol.
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-charcoal-700 flex items-center justify-between">
+              <span class="text-[11px] uppercase tracking-wider text-bronze-light">Dermatology Lab</span>
+              <button 
+                onclick="openBookingModal('Laser Skin Consultation', 75, '30 Mins')"
+                class="px-4 py-2 rounded-full border border-gold text-gold hover:bg-gold hover:text-charcoal text-xs font-semibold uppercase tracking-wider transition-colors flex items-center gap-1.5"
+              >
+                <span>Reserve</span>
+                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5: Keratin Hair Infusion ($200 | 120 Mins) -->
+        <div class="service-card group rounded-2xl overflow-hidden glass-card hover:border-gold transition-all duration-500 flex flex-col hover:shadow-gold-glow" data-category="salon">
+          <!-- Card Image Container with Zoom -->
+          <div class="relative h-64 overflow-hidden bg-charcoal-900">
+            <img 
+              src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80" 
+              alt="Keratin Hair Infusion" 
+              class="service-card-image w-full h-full object-cover object-center"
+            >
+            <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent opacity-80"></div>
+            
+            <!-- Category Badge -->
+            <div class="absolute top-4 left-4">
+              <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-charcoal-900/90 text-gold border border-gold/40 backdrop-blur-md">
+                Haute Salon
+              </span>
+            </div>
+
+            <!-- Price & Duration Pill -->
+            <div class="absolute bottom-4 right-4 bg-charcoal-900/90 border border-gold/40 px-3.5 py-1.5 rounded-full text-xs font-medium text-ivory backdrop-blur-md flex items-center gap-2">
+              <span class="text-gold-light font-bold text-sm">$200</span>
+              <span class="text-charcoal-muted">|</span>
+              <span class="text-[11px] text-ivory-muted"><i class="fa-regular fa-clock text-gold mr-1"></i>120 Mins</span>
+            </div>
+          </div>
+
+          <!-- Card Body -->
+          <div class="p-6 sm:p-7 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-serif text-2xl font-normal text-ivory group-hover:text-gold-light transition-colors mb-2.5">
+                Keratin Hair Infusion
+              </h3>
+              <p class="text-ivory-muted text-xs sm:text-sm leading-relaxed mb-6">
+                Formaldehyde-free bioactive keratin sealing formula delivering mirror-like silkiness, frizz elimination, and moisture retention for up to 16 weeks.
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-charcoal-700 flex items-center justify-between">
+              <span class="text-[11px] uppercase tracking-wider text-bronze-light">Styling Suite 02</span>
+              <button 
+                onclick="openBookingModal('Keratin Hair Infusion', 200, '120 Mins')"
+                class="px-4 py-2 rounded-full border border-gold text-gold hover:bg-gold hover:text-charcoal text-xs font-semibold uppercase tracking-wider transition-colors flex items-center gap-1.5"
+              >
+                <span>Reserve</span>
+                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6: Bridal & Event Makeover ($250 | 120 Mins) -->
+        <div class="service-card group rounded-2xl overflow-hidden glass-card hover:border-gold transition-all duration-500 flex flex-col hover:shadow-gold-glow" data-category="salon">
+          <!-- Card Image Container with Zoom -->
+          <div class="relative h-64 overflow-hidden bg-charcoal-900">
+            <img 
+              src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=800&q=80" 
+              alt="Bridal & Event Makeover" 
+              class="service-card-image w-full h-full object-cover object-center"
+            >
+            <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent opacity-80"></div>
+            
+            <!-- Category Badge -->
+            <div class="absolute top-4 left-4">
+              <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-charcoal-900/90 text-gold border border-gold/40 backdrop-blur-md">
+                Bridal &amp; Gala
+              </span>
+            </div>
+
+            <!-- Price & Duration Pill -->
+            <div class="absolute bottom-4 right-4 bg-charcoal-900/90 border border-gold/40 px-3.5 py-1.5 rounded-full text-xs font-medium text-ivory backdrop-blur-md flex items-center gap-2">
+              <span class="text-gold-light font-bold text-sm">$250</span>
+              <span class="text-charcoal-muted">|</span>
+              <span class="text-[11px] text-ivory-muted"><i class="fa-regular fa-clock text-gold mr-1"></i>120 Mins</span>
+            </div>
+          </div>
+
+          <!-- Card Body -->
+          <div class="p-6 sm:p-7 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-serif text-2xl font-normal text-ivory group-hover:text-gold-light transition-colors mb-2.5">
+                Bridal &amp; Event Makeover
+              </h3>
+              <p class="text-ivory-muted text-xs sm:text-sm leading-relaxed mb-6">
+                Red-carpet couture airbrush makeup, structured couture hair sculpture, silk lash enhancements, and personalized veil &amp; accessory placement.
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-charcoal-700 flex items-center justify-between">
+              <span class="text-[11px] uppercase tracking-wider text-bronze-light">Private Bridal Lounge</span>
+              <button 
+                onclick="openBookingModal('Bridal & Event Makeover', 250, '120 Mins')"
+                class="px-4 py-2 rounded-full border border-gold text-gold hover:bg-gold hover:text-charcoal text-xs font-semibold uppercase tracking-wider transition-colors flex items-center gap-1.5"
+              >
+                <span>Reserve</span>
+                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Custom Consultation Banner -->
+      <div class="mt-16 p-8 rounded-2xl border border-gold/30 bg-gradient-to-r from-charcoal-900 via-charcoal-800 to-charcoal-900 text-center max-w-4xl mx-auto shadow-luxury">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div class="text-center sm:text-left">
+            <h4 class="font-serif text-xl sm:text-2xl text-ivory">Seeking a Personalized Multi-Treatment Regimen?</h4>
+            <p class="text-xs sm:text-sm text-ivory-muted mt-1">Our Senior Aesthetic Directors curate half-day and full-day bridal and renewal immersions.</p>
+          </div>
+          <button onclick="openBookingModal('Bespoke Multi-Treatment Immersion')" class="gold-button shrink-0 px-6 py-3 rounded-full bg-gold-gradient text-charcoal font-bold text-xs uppercase tracking-widest shadow-gold-glow">
+            Request Custom Curation
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 6. CLIENT CARE & PRIORITY ASSISTANCE SECTION                              -->
+  <!-- ========================================================================= -->
+  <section id="client-care" class="py-24 sm:py-32 bg-charcoal-900 text-ivory relative border-t border-b border-gold/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
+        <div class="ornament-line mb-3">
+          <span class="text-xs uppercase tracking-[0.3em] font-semibold text-gold">White-Glove Hospitality</span>
+        </div>
+        <h2 class="font-serif text-3xl sm:text-5xl font-light tracking-wide uppercase text-ivory mb-4">
+          Client Care &amp; Priority Assistance
+        </h2>
+        <p class="text-ivory-muted text-sm sm:text-base leading-relaxed">
+          From your initial consultation through post-treatment care, experience our dedicated concierge support tailored to your absolute peace of mind.
+        </p>
+      </div>
+
+      <!-- 3 Gold-Accented Feature Boxes -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Box 1: Tailored Consultations -->
+        <div class="glass-card p-8 sm:p-10 rounded-2xl border border-gold/30 hover:border-gold hover:shadow-gold-glow transition-all duration-300 relative group flex flex-col justify-between">
+          <div class="absolute top-0 right-0 w-24 h-24 bg-gold/5 rounded-bl-full pointer-events-none group-hover:bg-gold/10 transition-colors"></div>
+          <div>
+            <div class="w-14 h-14 rounded-full border border-gold flex items-center justify-center bg-charcoal mb-6 text-gold group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-sliders text-xl"></i>
+            </div>
+            <div class="text-xs uppercase tracking-widest text-gold font-bold mb-2">Step 01 &bull; Diagnostic</div>
+            <h3 class="font-serif text-2xl font-normal text-ivory mb-3">
+              1. Tailored Consultations
+            </h3>
+            <p class="text-ivory-muted text-sm leading-relaxed mb-6">
+              Personalized beauty and clinical treatments curated for your skin and hair profile. We conduct microscopic follicle mapping and dermal elasticity scoring to prescribe therapies matched uniquely to your physiology.
+            </p>
+          </div>
+          <ul class="space-y-2 text-xs text-ivory-200 border-t border-charcoal-700 pt-4">
+            <li class="flex items-center gap-2">
+              <i class="fa-solid fa-check text-gold text-xs"></i>
+              <span>Custom skin &amp; scalp biometrics</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i class="fa-solid fa-check text-gold text-xs"></i>
+              <span>Allergy &amp; sensitivity pre-screening</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Box 2: Seamless Scheduling -->
+        <div class="glass-card p-8 sm:p-10 rounded-2xl border border-gold/40 hover:border-gold hover:shadow-gold-glow transition-all duration-300 relative group flex flex-col justify-between bg-charcoal-800/80">
+          <div class="absolute top-0 right-0 w-24 h-24 bg-gold/10 rounded-bl-full pointer-events-none group-hover:bg-gold/20 transition-colors"></div>
+          <div>
+            <div class="w-14 h-14 rounded-full border border-gold flex items-center justify-center bg-charcoal mb-6 text-gold group-hover:scale-110 transition-transform">
+              <i class="fa-regular fa-calendar-check text-xl"></i>
+            </div>
+            <div class="text-xs uppercase tracking-widest text-gold font-bold mb-2">Step 02 &bull; Efficiency</div>
+            <h3 class="font-serif text-2xl font-normal text-ivory mb-3">
+              2. Seamless Scheduling
+            </h3>
+            <p class="text-ivory-muted text-sm leading-relaxed mb-6">
+              Instant booking confirmations delivered directly to your inbox. Receive calendar invites, pre-appointment preparation guides, and contactless digital check-in to make your sanctuary visit effortlessly smooth.
+            </p>
+          </div>
+          <ul class="space-y-2 text-xs text-ivory-200 border-t border-charcoal-700 pt-4">
+            <li class="flex items-center gap-2">
+              <i class="fa-solid fa-check text-gold text-xs"></i>
+              <span>Automated calendar reminders</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i class="fa-solid fa-check text-gold text-xs"></i>
+              <span>Flexible 24-hour reschedule grace window</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Box 3: Dedicated Specialist Support -->
+        <div class="glass-card p-8 sm:p-10 rounded-2xl border border-gold/30 hover:border-gold hover:shadow-gold-glow transition-all duration-300 relative group flex flex-col justify-between">
+          <div class="absolute top-0 right-0 w-24 h-24 bg-gold/5 rounded-bl-full pointer-events-none group-hover:bg-gold/10 transition-colors"></div>
+          <div>
+            <div class="w-14 h-14 rounded-full border border-gold flex items-center justify-center bg-charcoal mb-6 text-gold group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-user-doctor text-xl"></i>
+            </div>
+            <div class="text-xs uppercase tracking-widest text-gold font-bold mb-2">Step 03 &bull; VIP Care</div>
+            <h3 class="font-serif text-2xl font-normal text-ivory mb-3">
+              3. Dedicated Specialist Support
+            </h3>
+            <p class="text-ivory-muted text-sm leading-relaxed mb-6">
+              Direct priority assistance from our senior medical and bridal coordinators for allergies, urgent clinical care, or custom packages. Continuous post-treatment follow-up ensures optimal recovery and glowing longevity.
+            </p>
+          </div>
+          <ul class="space-y-2 text-xs text-ivory-200 border-t border-charcoal-700 pt-4">
+            <li class="flex items-center gap-2">
+              <i class="fa-solid fa-check text-gold text-xs"></i>
+              <span>Direct private concierge hotline</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i class="fa-solid fa-check text-gold text-xs"></i>
+              <span>Bridal suite coordinator access</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Priority Contact Callout Strip -->
+      <div class="mt-14 p-6 sm:p-8 rounded-xl border border-gold/30 bg-charcoal flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full bg-gold/10 border border-gold/40 flex items-center justify-center text-gold shrink-0">
+            <i class="fa-solid fa-headset text-lg"></i>
+          </div>
+          <div>
+            <div class="text-xs font-bold tracking-widest uppercase text-gold">24/7 Priority Concierge Desk</div>
+            <div class="font-serif text-xl sm:text-2xl text-ivory">Need Urgent Clinical Advice or Bridal Curation?</div>
+          </div>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
+          <a href="tel:+18005552872" class="px-6 py-3 rounded-full border border-gold text-gold hover:bg-gold hover:text-charcoal text-xs font-bold uppercase tracking-widest transition-all">
+            Call +1 (800) 555-AURA
+          </a>
+          <button onclick="openBookingModal('Priority Clinical Consultation')" class="gold-button px-6 py-3 rounded-full bg-gold-gradient text-charcoal text-xs font-bold uppercase tracking-widest shadow-gold-glow">
+            Priority Request
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 7. GUEST TESTIMONIALS (LUXURY SOCIAL PROOF)                               -->
+  <!-- ========================================================================= -->
+  <section class="py-20 sm:py-24 bg-ivory text-charcoal relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <div class="ornament-line mb-3">
+          <span class="text-xs uppercase tracking-[0.3em] font-semibold text-bronze">Acclaimed Experiences</span>
+        </div>
+        <h2 class="font-serif text-3xl sm:text-4xl font-light tracking-wide uppercase text-charcoal">
+          Words from Our Guests
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Review 1 -->
+        <div class="bg-white p-8 rounded-2xl border border-gold/20 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex text-gold mb-4 text-xs gap-1">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="font-serif italic text-lg text-charcoal-700 leading-relaxed mb-6">
+              "The balayage work by Julian is unmatched. My hair has never felt healthier or caught the light with such natural dimension. The private suite makes the appointment feel like a vacation."
+            </p>
+          </div>
+          <div class="border-t border-ivory-300 pt-4 flex items-center justify-between">
+            <span class="font-semibold text-sm text-charcoal">Elena Rostova</span>
+            <span class="text-[11px] text-bronze uppercase tracking-wider">Hair Artistry &amp; Balayage</span>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="bg-white p-8 rounded-2xl border border-gold/30 shadow-md flex flex-col justify-between">
+          <div>
+            <div class="flex text-gold mb-4 text-xs gap-1">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="font-serif italic text-lg text-charcoal-700 leading-relaxed mb-6">
+              "Dr. Sterling’s diagnostic consultation identified skin inflammation three other clinics overlooked. The Hydrafacial and clinical laser protocol gave me genuine, lasting glass skin."
+            </p>
+          </div>
+          <div class="border-t border-ivory-300 pt-4 flex items-center justify-between">
+            <span class="font-semibold text-sm text-charcoal">Camilla Vance</span>
+            <span class="text-[11px] text-bronze uppercase tracking-wider">Luxury Hydrafacial</span>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="bg-white p-8 rounded-2xl border border-gold/20 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex text-gold mb-4 text-xs gap-1">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="font-serif italic text-lg text-charcoal-700 leading-relaxed mb-6">
+              "The bridal team took care of me and my bridal party with seamless grace. From champagne in our private lounge to the bespoke airbrush makeup that lasted all night—perfection."
+            </p>
+          </div>
+          <div class="border-t border-ivory-300 pt-4 flex items-center justify-between">
+            <span class="font-semibold text-sm text-charcoal">Genevieve Laurent</span>
+            <span class="text-[11px] text-bronze uppercase tracking-wider">Bridal &amp; Event Makeover</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 8. CONTACT & LOCATION / RESERVATION BANNER                                 -->
+  <!-- ========================================================================= -->
+  <section id="contact" class="py-24 sm:py-32 bg-charcoal text-ivory relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left: Studio Details & Visit Info -->
+        <div class="lg:col-span-5 space-y-8">
+          <div>
+            <div class="ornament-line !justify-start mb-3">
+              <span class="text-xs uppercase tracking-[0.3em] font-semibold text-gold">Location &amp; Inquiries</span>
+            </div>
+            <h2 class="font-serif text-3xl sm:text-5xl font-light tracking-wide uppercase text-ivory mb-4">
+              Visit Our Studio
+            </h2>
+            <p class="text-ivory-muted text-sm sm:text-base leading-relaxed">
+              Nestled in the heart of the prestige medical and design district, our sanctuary offers valet parking, private entry, and personalized check-in.
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            <!-- Address -->
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full border border-gold/40 flex items-center justify-center text-gold shrink-0 bg-charcoal-900">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div>
+                <h3 class="font-serif text-lg text-ivory">Sanctuary Address</h3>
+                <p class="text-xs sm:text-sm text-ivory-muted mt-0.5 leading-relaxed">
+                  Aura Glow Studio, 742 Evergreen Promenade, Suite 400<br>
+                  Beverly Hills / West Hollywood, CA 90210
+                </p>
+              </div>
+            </div>
+
+            <!-- Hours -->
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full border border-gold/40 flex items-center justify-center text-gold shrink-0 bg-charcoal-900">
+                <i class="fa-regular fa-clock"></i>
+              </div>
+              <div>
+                <h3 class="font-serif text-lg text-ivory">Studio Hours</h3>
+                <p class="text-xs sm:text-sm text-ivory-muted mt-0.5">
+                  Monday – Sunday: <span class="text-gold-light font-medium">9:00 AM – 9:00 PM</span><br>
+                  VIP After-Hours Clinical Care: Available upon private request
+                </p>
+              </div>
+            </div>
+
+            <!-- Concierge Phone & Email -->
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full border border-gold/40 flex items-center justify-center text-gold shrink-0 bg-charcoal-900">
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+              <div>
+                <h3 class="font-serif text-lg text-ivory">Direct Concierge</h3>
+                <p class="text-xs sm:text-sm text-ivory-muted mt-0.5">
+                  Direct Line: <a href="tel:+18005552872" class="text-gold-light hover:underline">+1 (800) 555-AURA</a><br>
+                  Private Inquiries: <a href="mailto:concierge@auraglowstudio.com" class="text-gold-light hover:underline">concierge@auraglowstudio.com</a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social Handles -->
+          <div class="pt-4 border-t border-charcoal-700 flex items-center gap-4">
+            <span class="text-xs uppercase tracking-widest text-gold">Follow Our Artistry:</span>
+            <div class="flex items-center gap-3">
+              <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-full border border-gold/40 flex items-center justify-center text-gold hover:bg-gold hover:text-charcoal transition-colors">
+                <i class="fa-brands fa-instagram text-sm"></i>
+              </a>
+              <a href="#" aria-label="Pinterest" class="w-9 h-9 rounded-full border border-gold/40 flex items-center justify-center text-gold hover:bg-gold hover:text-charcoal transition-colors">
+                <i class="fa-brands fa-pinterest-p text-sm"></i>
+              </a>
+              <a href="#" aria-label="Facebook" class="w-9 h-9 rounded-full border border-gold/40 flex items-center justify-center text-gold hover:bg-gold hover:text-charcoal transition-colors">
+                <i class="fa-brands fa-facebook-f text-sm"></i>
+              </a>
+              <a href="#" aria-label="TikTok" class="w-9 h-9 rounded-full border border-gold/40 flex items-center justify-center text-gold hover:bg-gold hover:text-charcoal transition-colors">
+                <i class="fa-brands fa-tiktok text-sm"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Fast Appointment Inquiry Box -->
+        <div class="lg:col-span-7">
+          <div class="glass-card p-8 sm:p-10 rounded-2xl border border-gold/40 shadow-luxury">
+            <div class="mb-6">
+              <span class="text-xs uppercase tracking-[0.25em] text-gold font-bold">Fast Reservation Request</span>
+              <h3 class="font-serif text-2xl sm:text-3xl text-ivory font-normal mt-1">Book Your Aura Experience</h3>
+              <p class="text-xs sm:text-sm text-ivory-muted mt-1">Submit your details and our senior coordinator will confirm your exact slot within 15 minutes.</p>
+            </div>
+
+            <form id="fast-booking-form" onsubmit="handleFastBooking(event)" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs uppercase tracking-wider text-ivory-200 mb-1.5 font-medium">Your Full Name *</label>
+                  <input type="text" required placeholder="e.g. Victoria Sterling" class="w-full bg-charcoal-900 border border-charcoal-700 focus:border-gold rounded-lg px-4 py-3 text-xs sm:text-sm text-ivory placeholder-charcoal-muted focus:outline-none transition-colors">
+                </div>
+                <div>
+                  <label class="block text-xs uppercase tracking-wider text-ivory-200 mb-1.5 font-medium">Phone Number *</label>
+                  <input type="tel" required placeholder="+1 (555) 000-0000" class="w-full bg-charcoal-900 border border-charcoal-700 focus:border-gold rounded-lg px-4 py-3 text-xs sm:text-sm text-ivory placeholder-charcoal-muted focus:outline-none transition-colors">
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs uppercase tracking-wider text-ivory-200 mb-1.5 font-medium">Email Address *</label>
+                  <input type="email" required placeholder="victoria@example.com" class="w-full bg-charcoal-900 border border-charcoal-700 focus:border-gold rounded-lg px-4 py-3 text-xs sm:text-sm text-ivory placeholder-charcoal-muted focus:outline-none transition-colors">
+                </div>
+                <div>
+                  <label class="block text-xs uppercase tracking-wider text-ivory-200 mb-1.5 font-medium">Selected Service *</label>
+                  <select id="quick-service-select" class="w-full bg-charcoal-900 border border-charcoal-700 focus:border-gold rounded-lg px-4 py-3 text-xs sm:text-sm text-ivory focus:outline-none transition-colors">
+                    <option value="Hair Artistry & Balayage ($120)">Hair Artistry &amp; Balayage ($120 | 90 Mins)</option>
+                    <option value="Luxury Hydrafacial ($160)">Luxury Hydrafacial ($160 | 60 Mins)</option>
+                    <option value="Deep Tissue & Stone Massage ($140)">Deep Tissue &amp; Stone Massage ($140 | 75 Mins)</option>
+                    <option value="Laser Skin Consultation ($75)">Laser Skin Consultation ($75 | 30 Mins)</option>
+                    <option value="Keratin Hair Infusion ($200)">Keratin Hair Infusion ($200 | 120 Mins)</option>
+                    <option value="Bridal & Event Makeover ($250)">Bridal &amp; Event Makeover ($250 | 120 Mins)</option>
+                    <option value="Custom Multi-Treatment Experience">Custom Multi-Treatment Immersion</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs uppercase tracking-wider text-ivory-200 mb-1.5 font-medium">Preferred Date</label>
+                  <input type="date" class="w-full bg-charcoal-900 border border-charcoal-700 focus:border-gold rounded-lg px-4 py-3 text-xs sm:text-sm text-ivory focus:outline-none transition-colors">
+                </div>
+                <div>
+                  <label class="block text-xs uppercase tracking-wider text-ivory-200 mb-1.5 font-medium">Preferred Time</label>
+                  <select class="w-full bg-charcoal-900 border border-charcoal-700 focus:border-gold rounded-lg px-4 py-3 text-xs sm:text-sm text-ivory focus:outline-none transition-colors">
+                    <option value="Morning">Morning (9:00 AM – 12:00 PM)</option>
+                    <option value="Afternoon">Afternoon (12:00 PM – 4:00 PM)</option>
+                    <option value="Evening">Evening (4:00 PM – 9:00 PM)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs uppercase tracking-wider text-ivory-200 mb-1.5 font-medium">Notes, Allergies or Special Requests</label>
+                <textarea rows="2" placeholder="e.g. Sensitive skin, bridal veil consultation, preference for quiet treatment room..." class="w-full bg-charcoal-900 border border-charcoal-700 focus:border-gold rounded-lg px-4 py-2.5 text-xs sm:text-sm text-ivory placeholder-charcoal-muted focus:outline-none transition-colors"></textarea>
+              </div>
+
+              <button type="submit" class="gold-button w-full py-4 rounded-xl bg-gold-gradient text-charcoal font-bold text-xs uppercase tracking-[0.2em] shadow-gold-glow flex items-center justify-center gap-2">
+                <i class="fa-solid fa-paper-plane text-xs"></i>
+                <span>Confirm Reservation Request</span>
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 9. FOOTER                                                                 -->
+  <!-- ========================================================================= -->
+  <footer class="bg-charcoal-950 text-ivory border-t border-gold/30 pt-16 pb-12 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-charcoal-800">
+        
+        <!-- Brand Summary -->
+        <div class="lg:col-span-4 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full border border-gold flex items-center justify-center bg-charcoal">
+              <span class="font-serif text-gold font-bold text-lg">AG</span>
+            </div>
+            <div>
+              <span class="font-serif text-xl font-bold tracking-[0.2em] text-ivory block">AURA GLOW</span>
+              <span class="text-[9px] tracking-[0.3em] text-gold uppercase block">Salon &amp; Aesthetic Clinic</span>
+            </div>
+          </div>
+          <p class="text-xs text-ivory-muted leading-relaxed max-w-sm">
+            Beverly Hills’ premier integrated aesthetic destination. Where scientific clinical precision converges with the sensory perfection of haute couture beauty.
+          </p>
+          <div class="text-xs text-bronze-light font-mono">
+            License #MED-EST-884920 &bull; Board Accredited
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="lg:col-span-2 space-y-3">
+          <h4 class="font-serif text-base text-gold uppercase tracking-wider">Navigation</h4>
+          <ul class="space-y-2 text-xs text-ivory-muted">
+            <li><a href="#" class="hover:text-gold transition-colors">Home Experience</a></li>
+            <li><a href="#about" class="hover:text-gold transition-colors">Our Sanctuary</a></li>
+            <li><a href="#services" class="hover:text-gold transition-colors">The Service Menu</a></li>
+            <li><a href="#client-care" class="hover:text-gold transition-colors">Client Care &amp; Support</a></li>
+            <li><a href="#contact" class="hover:text-gold transition-colors">Visit &amp; Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Signature Offerings -->
+        <div class="lg:col-span-3 space-y-3">
+          <h4 class="font-serif text-base text-gold uppercase tracking-wider">Signature Rituals</h4>
+          <ul class="space-y-2 text-xs text-ivory-muted">
+            <li><a href="#services" onclick="openBookingModal('Hair Artistry & Balayage')" class="hover:text-gold transition-colors">Hair Artistry &amp; Balayage ($120)</a></li>
+            <li><a href="#services" onclick="openBookingModal('Luxury Hydrafacial')" class="hover:text-gold transition-colors">Luxury Hydrafacial ($160)</a></li>
+            <li><a href="#services" onclick="openBookingModal('Deep Tissue & Stone Massage')" class="hover:text-gold transition-colors">Deep Tissue &amp; Stone Massage ($140)</a></li>
+            <li><a href="#services" onclick="openBookingModal('Laser Skin Consultation')" class="hover:text-gold transition-colors">Laser Skin Consultation ($75)</a></li>
+            <li><a href="#services" onclick="openBookingModal('Keratin Hair Infusion')" class="hover:text-gold transition-colors">Keratin Hair Infusion ($200)</a></li>
+            <li><a href="#services" onclick="openBookingModal('Bridal & Event Makeover')" class="hover:text-gold transition-colors">Bridal &amp; Event Makeover ($250)</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter & VIP Access -->
+        <div class="lg:col-span-3 space-y-3">
+          <h4 class="font-serif text-base text-gold uppercase tracking-wider">VIP Membership</h4>
+          <p class="text-xs text-ivory-muted leading-relaxed">
+            Subscribe to receive private invitations to dermatologist symposia, seasonal beauty releases, and priority bridal booking.
+          </p>
+          <form onsubmit="handleNewsletter(event)" class="space-y-2 pt-1">
+            <div class="flex">
+              <input type="email" required placeholder="Enter private email" class="w-full bg-charcoal-900 border border-charcoal-700 text-xs px-3.5 py-2.5 rounded-l-lg text-ivory placeholder-charcoal-muted focus:outline-none focus:border-gold">
+              <button type="submit" class="bg-gold hover:bg-gold-light text-charcoal px-4 py-2.5 text-xs font-bold rounded-r-lg uppercase transition-colors shrink-0">
+                Join
+              </button>
+            </div>
+            <span class="text-[10px] text-bronze-light block">We respect your complete privacy. Unsubscribe anytime.</span>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Copyright & Bottom Bar -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-charcoal-muted gap-4">
+        <div>
+          &copy; <span id="current-year">2026</span> <strong class="text-ivory-200">Aura Glow Studio</strong>. Luxury Salon &amp; Aesthetic Clinic. All rights reserved.
+        </div>
+        <div class="flex items-center gap-6 text-[11px]">
+          <a href="#" class="hover:text-gold transition-colors">Privacy Policy</a>
+          <span class="text-charcoal-700">&bull;</span>
+          <a href="#" class="hover:text-gold transition-colors">Clinical Standards</a>
+          <span class="text-charcoal-700">&bull;</span>
+          <a href="#" class="hover:text-gold transition-colors">Terms of Care</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- 10. LUXURY INTERACTIVE APPOINTMENT MODAL                                   -->
+  <!-- ========================================================================= -->
+  <div id="booking-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+    <!-- Backdrop Blur with Animation -->
+    <div onclick="closeBookingModal()" class="fixed inset-0 bg-charcoal-950/85 backdrop-blur-md transition-opacity"></div>
+
+    <!-- Modal Content Window -->
+    <div class="relative bg-charcoal border border-gold/50 rounded-2xl max-w-xl w-full p-6 sm:p-8 shadow-gold-glow-lg text-ivory z-10 max-h-[90vh] overflow-y-auto">
+      
+      <!-- Close Button -->
+      <button onclick="closeBookingModal()" aria-label="Close Modal" class="absolute top-5 right-5 w-8 h-8 rounded-full border border-gold/40 flex items-center justify-center text-gold hover:text-ivory hover:border-gold transition-colors">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+
+      <!-- Modal Header -->
+      <div class="text-center mb-6">
+        <div class="w-12 h-12 rounded-full border border-gold flex items-center justify-center mx-auto mb-3 bg-charcoal-900">
+          <i class="fa-solid fa-sparkles text-gold text-lg"></i>
+        </div>
+        <span class="text-xs uppercase tracking-[0.25em] text-gold font-bold">VIP Scheduling</span>
+        <h3 class="font-serif text-2xl sm:text-3xl text-ivory mt-1">Reserve Your Sanctuary Experience</h3>
+        <p class="text-xs text-ivory-muted mt-1">Select your preferred ritual and time. Our concierge will curate everything before arrival.</p>
+      </div>
+
+      <!-- Booking Form -->
+      <form id="modal-booking-form" onsubmit="handleModalBooking(event)" class="space-y-4">
+        
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-ivory-200 mb-1.5 font-medium">Service Selection *</label>
+          <select id="modal-service-select" class="w-full bg-charcoal-900 border border-charcoal-700 focus:border-gold rounded-lg px-4 py-3 text-xs sm:text-sm text-ivory focus:outline-none transition-colors">
+            <option value="Hair Artistry & Balayage ($120 | 90 Mins)">Hair Artistry &amp; Balayage ($120 | 90 Mins)</option>
+            <option value="Luxury Hydrafacial ($160 | 60 Mins)">Luxury Hydrafacial ($160 | 60 Mins)</option>
+            <option value="Deep Tissue & Stone Massage ($140 | 75 Mins)">Deep Tissue &amp; Stone Massage ($140 | 75 Mins)</option>
+            <option value="Laser Skin Consultation ($75 | 30 Mins)">Laser Skin Consultation ($75 | 30 Mins)</option>
+            <option value="Keratin Hair Infusion ($200 | 120 Mins)">Keratin Hair Infusion ($200 | 120 Mins)</option>
+            <option value="Bridal & Event Makeover ($250 | 120 Mins)">Bridal &amp; Event Makeover ($250 | 120 Mins)</option>
+            <option value="General VIP Appointment">General VIP Appointment &amp; Custom Consultation</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-ivory-200 mb-1.5 font-medium">Preferred Specialist</label>
+            <select class="w-full bg-charcoal-900 border border-charcoal-700 focus:border-gold rounded-lg px-4 py-3 text-xs sm:text-sm text-ivory focus:outline-none transition-colors">
+              <option value="First Available">First Available Master Specialist</option>
+              <option value="Dr. Vivienne Sterling">Dr. Vivienne Sterling (Lead Dermatologist)</option>
+              <option value="Julian Rossi">Julian Rossi (Master Colorist & Stylist)</option>
+              <option value="Sienna Laurent">Sienna Laurent (Senior Aesthetician)</option>
+              <option value="Aria Chen">Aria Chen (Bridal Makeover Director)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-ivory-200 mb-1.5 font-medium">Treatment Date *</label>
+            <input type="date" required id="modal-date-picker" class="w-full bg-charcoal-900 border border-charcoal-700 focus:border-gold rounded-lg px-4 py-3 text-xs sm:text-sm text-ivory focus:outline-none transition-colors">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-ivory-200 mb-1.5 font-medium">Your Name *</label>
+            <input type="text" required placeholder="Full Name" class="w-full bg-charcoal-900 border border-charcoal-700 focus:border-gold rounded-lg px-4 py-3 text-xs sm:text-sm text-ivory placeholder-charcoal-muted focus:outline-none transition-colors">
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-ivory-200 mb-1.5 font-medium">Phone Number *</label>
+            <input type="tel" required placeholder="+1 (555) 000-0000" class="w-full bg-charcoal-900 border border-charcoal-700 focus:border-gold rounded-lg px-4 py-3 text-xs sm:text-sm text-ivory placeholder-charcoal-muted focus:outline-none transition-colors">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-ivory-200 mb-1.5 font-medium">Email Address (for instant confirmation) *</label>
+          <input type="email" required placeholder="your.email@luxury.com" class="w-full bg-charcoal-900 border border-charcoal-700 focus:border-gold rounded-lg px-4 py-3 text-xs sm:text-sm text-ivory placeholder-charcoal-muted focus:outline-none transition-colors">
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-ivory-200 mb-1.5 font-medium">Special Requests &amp; Allergies</label>
+          <textarea rows="2" placeholder="Tell us if you have any product allergies, sensitive skin, or wish for a private bridal room suite..." class="w-full bg-charcoal-900 border border-charcoal-700 focus:border-gold rounded-lg px-4 py-2.5 text-xs sm:text-sm text-ivory placeholder-charcoal-muted focus:outline-none transition-colors"></textarea>
+        </div>
+
+        <div class="pt-2">
+          <button type="submit" class="gold-button w-full py-4 rounded-xl bg-gold-gradient text-charcoal font-bold text-xs uppercase tracking-[0.2em] shadow-gold-glow flex items-center justify-center gap-2">
+            <i class="fa-regular fa-calendar-check text-sm"></i>
+            <span>Confirm &amp; Issue VIP Pass</span>
+          </button>
+        </div>
+      </form>
+
+      <!-- Confirmation State Container (hidden by default) -->
+      <div id="modal-success-state" class="hidden text-center py-8">
+        <div class="w-16 h-16 rounded-full bg-gold/20 border border-gold flex items-center justify-center mx-auto mb-4 text-gold text-2xl">
+          <i class="fa-solid fa-check"></i>
+        </div>
+        <h4 class="font-serif text-2xl text-ivory mb-2">Reservation Request Received</h4>
+        <p class="text-xs sm:text-sm text-ivory-muted leading-relaxed max-w-md mx-auto mb-6">
+          Thank you for choosing <span class="text-gold">AURA GLOW STUDIO</span>. A private booking confirmation and consultation prep pack has been sent to your inbox.
+        </p>
+        <button onclick="closeBookingModal()" class="px-6 py-2.5 rounded-full border border-gold text-gold hover:bg-gold hover:text-charcoal text-xs font-semibold uppercase tracking-wider transition-colors">
+          Return to Sanctuary
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 11. TOAST NOTIFICATION                                                    -->
+  <!-- ========================================================================= -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-32 opacity-0 transition-all duration-500 pointer-events-none">
+    <div class="bg-charcoal border border-gold/70 text-ivory px-5 py-3.5 rounded-xl shadow-gold-glow flex items-center gap-3">
+      <i class="fa-solid fa-circle-check text-gold text-lg"></i>
+      <div>
+        <div id="toast-title" class="text-xs font-bold text-gold uppercase tracking-wider">Success</div>
+        <div id="toast-message" class="text-xs text-ivory-muted">Your action has been completed.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- JAVASCRIPT LOGIC                                                          -->
+  <!-- ========================================================================= -->
+  <script>
+    // Set Current Year
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // Set Default Date in Pickers to Tomorrow
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const tomorrowFormatted = tomorrow.toISOString().split('T')[0];
+    const datePicker = document.getElementById('modal-date-picker');
+    if (datePicker) {
+      datePicker.min = tomorrowFormatted;
+      datePicker.value = tomorrowFormatted;
+    }
+
+    // Mobile Menu Toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileIcon = document.getElementById('mobile-menu-icon');
+
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        const isOpen = !mobileMenu.classList.contains('hidden');
+        if (isOpen) {
+          mobileIcon.classList.remove('fa-bars');
+          mobileIcon.classList.add('fa-xmark');
+        } else {
+          mobileIcon.classList.remove('fa-xmark');
+          mobileIcon.classList.add('fa-bars');
+        }
+      });
+
+      // Close mobile menu when link clicked
+      document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          mobileIcon.classList.remove('fa-xmark');
+          mobileIcon.classList.add('fa-bars');
+        });
+      });
+    }
+
+    // Modal Control
+    const bookingModal = document.getElementById('booking-modal');
+    const modalServiceSelect = document.getElementById('modal-service-select');
+    const modalBookingForm = document.getElementById('modal-booking-form');
+    const modalSuccessState = document.getElementById('modal-success-state');
+
+    function openBookingModal(serviceName = '', price = '', duration = '') {
+      if (bookingModal) {
+        bookingModal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+
+        // Reset form visibility
+        if (modalBookingForm && modalSuccessState) {
+          modalBookingForm.classList.remove('hidden');
+          modalSuccessState.classList.add('hidden');
+        }
+
+        // Match service dropdown if provided
+        if (modalServiceSelect && serviceName) {
+          for (let i = 0; i < modalServiceSelect.options.length; i++) {
+            if (modalServiceSelect.options[i].value.toLowerCase().includes(serviceName.toLowerCase())) {
+              modalServiceSelect.selectedIndex = i;
+              break;
+            }
+          }
+        }
+      }
+    }
+
+    function closeBookingModal() {
+      if (bookingModal) {
+        bookingModal.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+    }
+
+    // Close on Escape Key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeBookingModal();
+      }
+    });
+
+    // Handle Form Submissions
+    function handleModalBooking(e) {
+      e.preventDefault();
+      if (modalBookingForm && modalSuccessState) {
+        modalBookingForm.classList.add('hidden');
+        modalSuccessState.classList.remove('hidden');
+        showToast('Appointment Reserved', 'A confirmation email & calendar pass has been sent.');
+      }
+    }
+
+    function handleFastBooking(e) {
+      e.preventDefault();
+      showToast('Reservation Requested', 'Our coordinator will contact you in under 15 minutes.');
+      e.target.reset();
+    }
+
+    function handleNewsletter(e) {
+      e.preventDefault();
+      showToast('VIP Access Confirmed', 'Welcome to the Aura Glow Studio private guest register.');
+      e.target.reset();
+    }
+
+    // Toast Utility
+    function showToast(title, message) {
+      const toast = document.getElementById('toast');
+      const toastTitle = document.getElementById('toast-title');
+      const toastMsg = document.getElementById('toast-message');
+
+      if (toast && toastTitle && toastMsg) {
+        toastTitle.textContent = title;
+        toastMsg.textContent = message;
+        toast.classList.remove('translate-y-32', 'opacity-0');
+        toast.classList.add('translate-y-0', 'opacity-100');
+
+        setTimeout(() => {
+          toast.classList.remove('translate-y-0', 'opacity-100');
+          toast.classList.add('translate-y-32', 'opacity-0');
+        }, 4000);
+      }
+    }
+
+    // Service Menu Filter
+    function filterServices(category) {
+      const cards = document.querySelectorAll('.service-card');
+      const filterBtns = document.querySelectorAll('.service-filter-btn');
+
+      // Update button visual styles
+      filterBtns.forEach(btn => {
+        if (btn.getAttribute('data-filter') === category) {
+          btn.classList.add('active-filter', 'bg-gold', 'text-charcoal', 'border-gold');
+          btn.classList.remove('bg-charcoal-800', 'text-ivory-200', 'border-charcoal-700');
+        } else {
+          btn.classList.remove('active-filter', 'bg-gold', 'text-charcoal', 'border-gold');
+          btn.classList.add('bg-charcoal-800', 'text-ivory-200', 'border-charcoal-700');
+        }
+      });
+
+      // Filter cards
+      cards.forEach(card => {
+        const cardCat = card.getAttribute('data-category');
+        if (category === 'all' || cardCat === category) {
+          card.style.display = 'flex';
+          card.classList.add('animate-fadeIn');
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Navbar Scroll Glassmorphism Intensity
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('main-header');
+      if (header) {
+        if (window.scrollY > 40) {
+          header.classList.add('shadow-luxury', 'bg-charcoal/95');
+          header.classList.remove('bg-charcoal/75');
+        } else {
+          header.classList.remove('shadow-luxury', 'bg-charcoal/95');
+          header.classList.add('bg-charcoal/75');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
