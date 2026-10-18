@@ -181,6 +181,34 @@
       width: 60px;
       background: linear-gradient(90deg, transparent, #C5A059, transparent);
     }
+
+    /* Floating Voice Assistant & Callout */
+    @keyframes voiceWavePulse {
+      0%, 100% { height: 6px; }
+      50% { height: 18px; }
+    }
+    .voice-bar-1 { animation: voiceWavePulse 0.8s ease-in-out infinite; }
+    .voice-bar-2 { animation: voiceWavePulse 0.8s ease-in-out infinite 0.2s; }
+    .voice-bar-3 { animation: voiceWavePulse 0.8s ease-in-out infinite 0.4s; }
+    .voice-bar-4 { animation: voiceWavePulse 0.8s ease-in-out infinite 0.1s; }
+
+    /* Custom Styling for Vapi Widget Button */
+    #vapi-support-btn {
+      position: fixed !important;
+      bottom: 24px !important;
+      right: 24px !important;
+      left: auto !important;
+      z-index: 9999 !important;
+      background: linear-gradient(135deg, #DFBF7C 0%, #C5A059 50%, #9E7D3B 100%) !important;
+      box-shadow: 0 0 25px rgba(197, 160, 89, 0.45), 0 10px 25px rgba(0, 0, 0, 0.5) !important;
+      border: 2px solid rgba(255, 255, 255, 0.4) !important;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      cursor: pointer !important;
+    }
+    #vapi-support-btn:hover {
+      transform: scale(1.08) translateY(-2px) !important;
+      box-shadow: 0 0 35px rgba(197, 160, 89, 0.7), 0 12px 30px rgba(0, 0, 0, 0.6) !important;
+    }
   </style>
 </head>
 <body class="bg-ivory text-charcoal font-sans antialiased overflow-x-hidden selection:bg-gold selection:text-charcoal-900">
@@ -251,7 +279,17 @@
         </nav>
 
         <!-- Right CTA & Mobile Toggle -->
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-2.5 sm:gap-4">
+          <!-- Voice Agent Header Trigger Button -->
+          <button onclick="triggerVoiceAssistant()" id="nav-voice-btn" aria-label="Talk to Voice AI Concierge" class="group relative flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 text-xs font-semibold tracking-[0.15em] uppercase rounded-full border border-gold/60 bg-charcoal-900/90 hover:bg-gold hover:text-charcoal text-gold shadow-gold-glow transition-all duration-300 transform hover:scale-105 active:scale-95">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+            </span>
+            <i class="fa-solid fa-microphone-lines text-xs group-hover:scale-110 transition-transform"></i>
+            <span class="hidden md:inline">Voice AI</span>
+          </button>
+
           <!-- Luxury Gold Button -->
           <button onclick="openBookingModal('General Appointment')" class="gold-button hidden sm:inline-flex items-center gap-2.5 px-6 py-2.5 text-xs font-semibold tracking-[0.2em] uppercase rounded-full text-charcoal bg-gold-gradient hover:shadow-gold-glow border border-gold-light transition-all transform hover:-translate-y-0.5">
             <i class="fa-regular fa-clock text-xs"></i>
@@ -273,7 +311,11 @@
         <a href="#services" class="mobile-nav-link hover:text-gold py-2 border-b border-charcoal-700">Service Menu</a>
         <a href="#client-care" class="mobile-nav-link hover:text-gold py-2 border-b border-charcoal-700">Client Care & Priority Support</a>
         <a href="#contact" class="mobile-nav-link hover:text-gold py-2 border-b border-charcoal-700">Contact & Hours</a>
-        <div class="pt-2">
+        <div class="pt-2 flex flex-col gap-2.5">
+          <button onclick="triggerVoiceAssistant()" class="w-full text-center py-3 text-xs font-bold tracking-[0.2em] uppercase rounded-full border border-gold text-gold hover:bg-gold hover:text-charcoal transition-all flex items-center justify-center gap-2 shadow-gold-glow">
+            <i class="fa-solid fa-microphone-lines text-sm"></i>
+            <span>Talk to AI Voice Concierge</span>
+          </button>
           <button onclick="openBookingModal('General Appointment')" class="w-full text-center py-3 text-xs font-bold tracking-[0.2em] uppercase rounded-full text-charcoal bg-gold-gradient shadow-gold-glow">
             Book Appointment
           </button>
@@ -322,15 +364,25 @@
       </p>
 
       <!-- Action Buttons -->
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full max-w-md">
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 w-full max-w-2xl">
         <!-- Explore Service Menu -->
-        <a href="#services" class="w-full sm:w-auto px-8 py-4 rounded-full border border-gold text-gold hover:text-charcoal hover:bg-gold text-xs font-semibold uppercase tracking-[0.2em] transition-all duration-300 text-center shadow-luxury">
-          Explore Service Menu
+        <a href="#services" class="w-full sm:w-auto px-6 py-3.5 rounded-full border border-gold text-gold hover:text-charcoal hover:bg-gold text-xs font-semibold uppercase tracking-[0.18em] transition-all duration-300 text-center shadow-luxury">
+          Explore Services
         </a>
 
+        <!-- Voice AI Concierge Hero Trigger -->
+        <button onclick="triggerVoiceAssistant()" class="w-full sm:w-auto px-6 py-3.5 rounded-full border border-gold/70 bg-charcoal-900/80 hover:bg-charcoal-800 text-gold-light hover:text-gold text-xs font-semibold uppercase tracking-[0.18em] transition-all duration-300 flex items-center justify-center gap-2.5 shadow-luxury hover:shadow-gold-glow group">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+          </span>
+          <i class="fa-solid fa-microphone-lines text-gold text-xs group-hover:scale-110 transition-transform"></i>
+          <span>Talk to AI Concierge</span>
+        </button>
+
         <!-- Book an Appointment -->
-        <button onclick="openBookingModal('Hero VIP Appointment')" class="gold-button w-full sm:w-auto px-8 py-4 rounded-full bg-gold-gradient text-charcoal hover:shadow-gold-glow text-xs font-bold uppercase tracking-[0.2em] border border-gold-light transition-all duration-300 text-center">
-          Book an Appointment
+        <button onclick="openBookingModal('Hero VIP Appointment')" class="gold-button w-full sm:w-auto px-6 py-3.5 rounded-full bg-gold-gradient text-charcoal hover:shadow-gold-glow text-xs font-bold uppercase tracking-[0.18em] border border-gold-light transition-all duration-300 text-center">
+          Book Appointment
         </button>
       </div>
 
@@ -1393,7 +1445,7 @@
   <!-- ========================================================================= -->
   <!-- 11. TOAST NOTIFICATION                                                    -->
   <!-- ========================================================================= -->
-  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-32 opacity-0 transition-all duration-500 pointer-events-none">
+  <div id="toast" class="fixed bottom-24 right-6 z-50 transform translate-y-32 opacity-0 transition-all duration-500 pointer-events-none">
     <div class="bg-charcoal border border-gold/70 text-ivory px-5 py-3.5 rounded-xl shadow-gold-glow flex items-center gap-3">
       <i class="fa-solid fa-circle-check text-gold text-lg"></i>
       <div>
@@ -1571,6 +1623,161 @@
           header.classList.remove('shadow-luxury', 'bg-charcoal/95');
           header.classList.add('bg-charcoal/75');
         }
+      }
+    });
+  </script>
+
+  <!-- ========================================================================= -->
+  <!-- FLOATING VOICE AGENT GRAB LAUNCHER & BADGE                                -->
+  <!-- ========================================================================= -->
+  <aside id="floating-voice-agent" class="fixed bottom-6 right-24 z-50 flex items-center transition-all duration-300">
+    <button 
+      id="voice-pill-trigger" 
+      onclick="triggerVoiceAssistant()" 
+      aria-label="Speak with AI Voice Concierge"
+      class="group relative flex items-center gap-3 bg-charcoal-900/95 hover:bg-charcoal-800 border border-gold/70 hover:border-gold pl-3.5 pr-4 py-2 rounded-full shadow-gold-glow backdrop-blur-xl transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer text-left select-none"
+    >
+      <!-- Pulse Rings + Glowing Icon Circle -->
+      <div class="relative flex items-center justify-center flex-shrink-0">
+        <span id="voice-pulse-ring" class="absolute inline-flex h-8 w-8 rounded-full bg-gold/40 animate-ping opacity-75"></span>
+        <div class="relative w-8 h-8 rounded-full bg-gold-gradient flex items-center justify-center text-charcoal shadow-sm">
+          <i id="voice-icon-symbol" class="fa-solid fa-microphone-lines text-xs group-hover:scale-110 transition-transform"></i>
+        </div>
+      </div>
+
+      <!-- Text / Status Labels -->
+      <div class="flex flex-col pr-1">
+        <div class="flex items-center gap-1.5">
+          <span class="text-[11px] font-bold text-ivory tracking-wider uppercase font-serif">AI Concierge</span>
+          <span id="voice-status-dot" class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse" title="Online & Ready"></span>
+        </div>
+        <span id="voice-status-label" class="text-[9px] text-gold-light tracking-widest uppercase font-semibold">Tap to Speak</span>
+      </div>
+
+      <!-- Animated Sound Wave (active when in call) -->
+      <div id="voice-wave-bars" class="hidden items-end gap-0.5 h-4 pb-0.5 pl-1">
+        <span class="w-0.5 bg-gold rounded-full voice-bar-1"></span>
+        <span class="w-0.5 bg-gold rounded-full voice-bar-2"></span>
+        <span class="w-0.5 bg-gold rounded-full voice-bar-3"></span>
+        <span class="w-0.5 bg-gold rounded-full voice-bar-4"></span>
+      </div>
+    </button>
+  </aside>
+
+  <!-- Vapi Voice Assistant Widget & Interactive Controller -->
+  <script src="https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js" defer></script>
+  <script>
+    var vapiInstance = null;
+    var isVoiceActive = false;
+
+    // Synchronize UI elements across website (floating badge, navbar, hero)
+    function updateVoiceUI(status) {
+      const statusLabel = document.getElementById('voice-status-label');
+      const statusDot = document.getElementById('voice-status-dot');
+      const waveBars = document.getElementById('voice-wave-bars');
+      const pulseRing = document.getElementById('voice-pulse-ring');
+      const iconSymbol = document.getElementById('voice-icon-symbol');
+      const navBtn = document.getElementById('nav-voice-btn');
+
+      if (status === 'active' || status === 'speaking') {
+        isVoiceActive = true;
+        if (statusLabel) statusLabel.textContent = status === 'speaking' ? 'Speaking...' : 'In Call • Tap to End';
+        if (statusDot) {
+          statusDot.classList.remove('bg-emerald-400');
+          statusDot.classList.add('bg-rose-500');
+        }
+        if (waveBars) {
+          waveBars.classList.remove('hidden');
+          waveBars.classList.add('flex');
+        }
+        if (pulseRing) pulseRing.classList.add('bg-rose-500/50');
+        if (iconSymbol) {
+          iconSymbol.classList.remove('fa-microphone-lines');
+          iconSymbol.classList.add('fa-phone-slash');
+        }
+        if (navBtn) {
+          navBtn.classList.add('border-rose-400', 'text-rose-400');
+        }
+      } else if (status === 'loading') {
+        if (statusLabel) statusLabel.textContent = 'Connecting...';
+      } else {
+        isVoiceActive = false;
+        if (statusLabel) statusLabel.textContent = 'Tap to Speak';
+        if (statusDot) {
+          statusDot.classList.remove('bg-rose-500');
+          statusDot.classList.add('bg-emerald-400');
+        }
+        if (waveBars) {
+          waveBars.classList.add('hidden');
+          waveBars.classList.remove('flex');
+        }
+        if (pulseRing) pulseRing.classList.remove('bg-rose-500/50');
+        if (iconSymbol) {
+          iconSymbol.classList.add('fa-microphone-lines');
+          iconSymbol.classList.remove('fa-phone-slash');
+        }
+        if (navBtn) {
+          navBtn.classList.remove('border-rose-400', 'text-rose-400');
+        }
+      }
+    }
+
+    // Trigger or Toggle Voice Assistant
+    function triggerVoiceAssistant() {
+      const vapiBtn = document.getElementById('vapi-support-btn');
+      if (vapiBtn) {
+        vapiBtn.click();
+        return;
+      }
+      if (vapiInstance) {
+        if (isVoiceActive && typeof vapiInstance.stop === 'function') {
+          vapiInstance.stop();
+        } else if (typeof vapiInstance.start === 'function') {
+          vapiInstance.start('aae4fc25-c09b-44b2-860d-381b37272ee6');
+        }
+      } else {
+        showToast('Connecting Voice Assistant', 'Please allow microphone access when prompted.');
+      }
+    }
+
+    // Initialize Vapi SDK once DOM & script are ready
+    window.addEventListener("DOMContentLoaded", function () {
+      function startVapi() {
+        if (window.vapiSDK && typeof window.vapiSDK.run === 'function') {
+          try {
+            vapiInstance = window.vapiSDK.run({
+              apiKey: "69592d5e-2531-437c-a4a2-c49b66cf5a58",
+              assistant: "aae4fc25-c09b-44b2-860d-381b37272ee6",
+              config: {
+                position: "bottom-right",
+                offset: "24px",
+                width: "52px",
+                height: "52px"
+              }
+            });
+
+            if (vapiInstance) {
+              vapiInstance.on("call-start", function () { updateVoiceUI('active'); });
+              vapiInstance.on("call-end", function () { updateVoiceUI('idle'); });
+              vapiInstance.on("speech-start", function () { updateVoiceUI('speaking'); });
+              vapiInstance.on("speech-end", function () { updateVoiceUI('active'); });
+            }
+          } catch (err) {
+            console.error("Vapi initialization error:", err);
+          }
+        }
+      }
+
+      if (window.vapiSDK) {
+        startVapi();
+      } else {
+        const interval = setInterval(function () {
+          if (window.vapiSDK) {
+            clearInterval(interval);
+            startVapi();
+          }
+        }, 150);
+        setTimeout(function () { clearInterval(interval); }, 6000);
       }
     });
   </script>
