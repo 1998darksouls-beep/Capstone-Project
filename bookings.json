@@ -1,0 +1,62 @@
+[
+  {
+    "id": "AG-UROJP8",
+    "timestamp": "2026-10-19T16:22:13.355Z",
+    "channel": "Voiceflow Chatbot",
+    "customer_name": "Wardha khan",
+    "customer_phone": "03359049476",
+    "customer_email": "1998darksouls@gmail.com",
+    "selected_service": "Luxury Hydrafacial",
+    "appointment_time": "Tomorrow at 2:00 PM",
+    "status": "Confirmed",
+    "escalation_reason": ""
+  },
+  {
+    "id": "AG-50STP0",
+    "timestamp": "2026-10-19T16:12:54.364Z",
+    "channel": "Voiceflow Chatbot",
+    "customer_name": "Sophia Lauren",
+    "customer_phone": "+1 310 555 2424",
+    "customer_email": "sophia@example.com",
+    "selected_service": "Hair Artistry & Balayage",
+    "appointment_time": "Tomorrow at 4:30 PM",
+    "status": "Confirmed",
+    "escalation_reason": ""
+  },
+  {
+    "id": "AG-4T9UNO",
+    "timestamp": "2026-10-19T15:52:02.493Z",
+    "channel": "Voiceflow Chatbot",
+    "customer_name": "Elena Rostova",
+    "customer_phone": "+1 310 555 7890",
+    "customer_email": "elena@example.com",
+    "selected_service": "Hair Artistry & Balayage",
+    "appointment_time": "Tomorrow at 3:00 PM",
+    "status": "Confirmed",
+    "escalation_reason": ""
+  },
+  {
+    "id": "AG-2DSC3X",
+    "timestamp": "2026-10-19T08:27:41.772Z",
+    "channel": "Voiceflow Chatbot",
+    "customer_name": "Antigravity Test",
+    "customer_phone": "+1 555 0199",
+    "customer_email": "test@auraglow.example",
+    "selected_service": "Luxury Hydrafacial",
+    "appointment_time": "Tomorrow at 2:00 PM",
+    "status": "Confirmed",
+    "escalation_reason": ""
+  },
+  {
+    "id": "AG-U4URVA",
+    "timestamp": "2026-10-19T08:14:24.010Z",
+    "channel": "Voiceflow Chatbot",
+    "customer_name": "Antigravity Test",
+    "customer_phone": "+1 555 0199",
+    "customer_email": "test@auraglow.example",
+    "selected_service": "Luxury Hydrafacial",
+    "appointment_time": "Tomorrow at 4:00 PM",
+    "status": "Confirmed",
+    "escalation_reason": ""
+  }
+]

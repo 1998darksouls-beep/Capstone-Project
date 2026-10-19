@@ -1,0 +1,305 @@
+{
+  "name": "VOICEFLOW",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ai-receptionist-booking",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -352,
+        0
+      ],
+      "id": "2cd55cbf-0711-4e18-98d8-fa500372ff4e",
+      "name": "Webhook",
+      "webhookId": "6194b10a-c4f3-4802-82e6-6da6cdd45c94"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "12sOCS0GEyTZzzN7uLZlmYrNAlElpTE2AsVnKoTsu1SM",
+          "mode": "list",
+          "cachedResultName": "Capstone Project",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/12sOCS0GEyTZzzN7uLZlmYrNAlElpTE2AsVnKoTsu1SM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/12sOCS0GEyTZzzN7uLZlmYrNAlElpTE2AsVnKoTsu1SM/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Timestamp": "={{ $now }}",
+            "customer_email": "={{ $json.body.customer_email }}",
+            "customer_phone": "={{ $json.body.customer_phone }}",
+            "selected_service": "={{ $json.body.selected_service }}",
+            "appointment_time": "={{ $json.body.appointment_time }}",
+            "channel (Voiceflow/Vapi)": "={{ $json.body.channel }}",
+            "customer_name": "={{ $json.body.customer_name }}",
+            "status": "={{ $json.body.status }}",
+            "escalation_reason": "={{ $json.body.escalation_reason }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "channel (Voiceflow/Vapi)",
+              "displayName": "channel (Voiceflow/Vapi)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "customer_name",
+              "displayName": "customer_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "customer_phone",
+              "displayName": "customer_phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "customer_email",
+              "displayName": "customer_email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "selected_service",
+              "displayName": "selected_service",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "appointment_time",
+              "displayName": "appointment_time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "escalation_reason",
+              "displayName": "escalation_reason",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -160,
+        0
+      ],
+      "id": "dde7c820-f1b0-421a-9f5c-75377703fa3b",
+      "name": "Append row in sheet",
+      "alwaysOutputData": false,
+      "executeOnce": false,
+      "retryOnFail": false,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "JfkEWbiSjiufRClc",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "f1d25b10-70c9-436d-a113-1786ff75f05f",
+              "leftValue": "={{ $json.status || $json['Status (Confirmed/Escalated)'] || $('Webhook').item.json.body.status }}",
+              "rightValue": "Escalated",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        64,
+        0
+      ],
+      "id": "78d9993b-508a-46a7-85ed-ee72bba22cfd",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Webhook').item.json.body.customer_email }}",
+        "subject": "Priority Support Request Received - Aura Glow Studio",
+        "emailType": "text",
+        "message": "=Hi {{ $('Webhook').item.json.body.customer_name }},  We have received your priority request ({{ $('Webhook').item.json.body.escalation_reason }}) and escalated it to our senior specialist team. Someone will call you shortly at {{ $('Webhook').item.json.body.customer_phone }}.  Warm regards, Aura Glow Studio Management",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        288,
+        -128
+      ],
+      "id": "350bd22e-239b-440e-b96b-3c86971524e3",
+      "name": "Send a message",
+      "webhookId": "9ccec7e3-88e9-4497-a93c-e008d87afa83",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "xYhSOZta4Ij1aIsm",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Webhook').item.json.body.customer_email }}",
+        "subject": "Appointment Confirmed - Aura Glow Studio",
+        "emailType": "text",
+        "message": "=Hi {{ $('Webhook').item.json.body.customer_name }},  Your appointment at Aura Glow Studio is confirmed!  Service: {{ $('Webhook').item.json.body.selected_service }} Date & Time: {{ $('Webhook').item.json.body.appointment_time }}  Thank you for choosing us!",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        288,
+        48
+      ],
+      "id": "157f16c9-65be-4199-ac09-5573ebc212e8",
+      "name": "Send a message1",
+      "webhookId": "b0c7c5e2-5ab7-48bb-9dfc-af7e17c1afbd",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "xYhSOZta4Ij1aIsm",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "e07b2ee3-563d-483c-a3d8-ae14d50265e7",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d7bef9cec15667ff55b23103a478fb13aa3ed898eadbe13efd0c88cd35efcc13"
+  },
+  "nodeGroups": [],
+  "id": "Ips86hwZ9rhX6nAa",
+  "tags": []
+}

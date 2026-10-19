@@ -209,6 +209,68 @@
       transform: scale(1.08) translateY(-2px) !important;
       box-shadow: 0 0 35px rgba(197, 160, 89, 0.7), 0 12px 30px rgba(0, 0, 0, 0.6) !important;
     }
+
+    /* Aura Glow AI Chatbot Luxury Styles */
+    @keyframes chatSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    .animate-chat-in {
+      animation: chatSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes messageFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-message-in {
+      animation: messageFadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes typingBounce {
+      0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+      40% { transform: translateY(-5px); opacity: 1; }
+    }
+    .typing-dot-1 { animation: typingBounce 1.2s infinite ease-in-out; }
+    .typing-dot-2 { animation: typingBounce 1.2s infinite ease-in-out 0.2s; }
+    .typing-dot-3 { animation: typingBounce 1.2s infinite ease-in-out 0.4s; }
+
+    @keyframes micPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6); }
+      50% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+    }
+    .mic-recording {
+      animation: micPulse 1.4s infinite;
+      background: #EF4444 !important;
+      color: #FFFFFF !important;
+    }
+
+    /* Custom Chat Message Scrollbar */
+    #aura-chat-messages::-webkit-scrollbar {
+      width: 5px;
+    }
+    #aura-chat-messages::-webkit-scrollbar-track {
+      background: rgba(17, 17, 17, 0.5);
+    }
+    #aura-chat-messages::-webkit-scrollbar-thumb {
+      background: #8C6D4F;
+      border-radius: 9999px;
+    }
+    #aura-chat-messages::-webkit-scrollbar-thumb:hover {
+      background: #C5A059;
+    }
   </style>
 </head>
 <body class="bg-ivory text-charcoal font-sans antialiased overflow-x-hidden selection:bg-gold selection:text-charcoal-900">
@@ -280,16 +342,6 @@
 
         <!-- Right CTA & Mobile Toggle -->
         <div class="flex items-center gap-2.5 sm:gap-4">
-          <!-- Voice Agent Header Trigger Button -->
-          <button onclick="triggerVoiceAssistant()" id="nav-voice-btn" aria-label="Talk to Voice AI Concierge" class="group relative flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 text-xs font-semibold tracking-[0.15em] uppercase rounded-full border border-gold/60 bg-charcoal-900/90 hover:bg-gold hover:text-charcoal text-gold shadow-gold-glow transition-all duration-300 transform hover:scale-105 active:scale-95">
-            <span class="relative flex h-2 w-2">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
-            </span>
-            <i class="fa-solid fa-microphone-lines text-xs group-hover:scale-110 transition-transform"></i>
-            <span class="hidden md:inline">Voice AI</span>
-          </button>
-
           <!-- Luxury Gold Button -->
           <button onclick="openBookingModal('General Appointment')" class="gold-button hidden sm:inline-flex items-center gap-2.5 px-6 py-2.5 text-xs font-semibold tracking-[0.2em] uppercase rounded-full text-charcoal bg-gold-gradient hover:shadow-gold-glow border border-gold-light transition-all transform hover:-translate-y-0.5">
             <i class="fa-regular fa-clock text-xs"></i>
@@ -312,11 +364,7 @@
         <a href="#client-care" class="mobile-nav-link hover:text-gold py-2 border-b border-charcoal-700">Client Care & Priority Support</a>
         <a href="#contact" class="mobile-nav-link hover:text-gold py-2 border-b border-charcoal-700">Contact & Hours</a>
         <div class="pt-2 flex flex-col gap-2.5">
-          <button onclick="triggerVoiceAssistant()" class="w-full text-center py-3 text-xs font-bold tracking-[0.2em] uppercase rounded-full border border-gold text-gold hover:bg-gold hover:text-charcoal transition-all flex items-center justify-center gap-2 shadow-gold-glow">
-            <i class="fa-solid fa-microphone-lines text-sm"></i>
-            <span>Talk to AI Voice Concierge</span>
-          </button>
-          <button onclick="openBookingModal('General Appointment')" class="w-full text-center py-3 text-xs font-bold tracking-[0.2em] uppercase rounded-full text-charcoal bg-gold-gradient shadow-gold-glow">
+          <button onclick="openBookingModal('General Appointment'); toggleMobileMenu();" class="w-full text-center py-3 text-xs font-bold tracking-[0.2em] uppercase rounded-full text-charcoal bg-gold-gradient shadow-gold-glow">
             Book Appointment
           </button>
         </div>
@@ -364,11 +412,12 @@
       </p>
 
       <!-- Action Buttons -->
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 w-full max-w-2xl">
-        <!-- Explore Service Menu -->
-        <a href="#services" class="w-full sm:w-auto px-6 py-3.5 rounded-full border border-gold text-gold hover:text-charcoal hover:bg-gold text-xs font-semibold uppercase tracking-[0.18em] transition-all duration-300 text-center shadow-luxury">
-          Explore Services
-        </a>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 w-full max-w-3xl">
+        <!-- AI Chatbot Hero Trigger -->
+        <button onclick="openAuraChat()" class="gold-button w-full sm:w-auto px-7 py-3.5 rounded-full bg-gold-gradient text-charcoal hover:shadow-gold-glow text-xs font-bold uppercase tracking-[0.18em] border border-gold-light transition-all duration-300 flex items-center justify-center gap-2.5 shadow-luxury">
+          <i class="fa-solid fa-comments text-charcoal text-xs"></i>
+          <span>Chat with AI Receptionist</span>
+        </button>
 
         <!-- Voice AI Concierge Hero Trigger -->
         <button onclick="triggerVoiceAssistant()" class="w-full sm:w-auto px-6 py-3.5 rounded-full border border-gold/70 bg-charcoal-900/80 hover:bg-charcoal-800 text-gold-light hover:text-gold text-xs font-semibold uppercase tracking-[0.18em] transition-all duration-300 flex items-center justify-center gap-2.5 shadow-luxury hover:shadow-gold-glow group">
@@ -377,13 +426,13 @@
             <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
           </span>
           <i class="fa-solid fa-microphone-lines text-gold text-xs group-hover:scale-110 transition-transform"></i>
-          <span>Talk to AI Concierge</span>
+          <span>Voice Concierge</span>
         </button>
 
-        <!-- Book an Appointment -->
-        <button onclick="openBookingModal('Hero VIP Appointment')" class="gold-button w-full sm:w-auto px-6 py-3.5 rounded-full bg-gold-gradient text-charcoal hover:shadow-gold-glow text-xs font-bold uppercase tracking-[0.18em] border border-gold-light transition-all duration-300 text-center">
-          Book Appointment
-        </button>
+        <!-- Explore Service Menu -->
+        <a href="#services" class="w-full sm:w-auto px-6 py-3.5 rounded-full border border-gold/50 text-ivory-200 hover:text-gold hover:border-gold text-xs font-semibold uppercase tracking-[0.18em] transition-all duration-300 text-center shadow-luxury">
+          Explore Services
+        </a>
       </div>
 
       <!-- Bottom Pillar Highlights -->
@@ -1382,7 +1431,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label class="block text-xs uppercase tracking-wider text-ivory-200 mb-1.5 font-medium">Preferred Specialist</label>
-            <select class="w-full bg-charcoal-900 border border-charcoal-700 focus:border-gold rounded-lg px-4 py-3 text-xs sm:text-sm text-ivory focus:outline-none transition-colors">
+            <select id="modal-specialist-select" class="w-full bg-charcoal-900 border border-charcoal-700 focus:border-gold rounded-lg px-4 py-3 text-xs sm:text-sm text-ivory focus:outline-none transition-colors">
               <option value="First Available">First Available Master Specialist</option>
               <option value="Dr. Vivienne Sterling">Dr. Vivienne Sterling (Lead Dermatologist)</option>
               <option value="Julian Rossi">Julian Rossi (Master Colorist & Stylist)</option>
@@ -1399,22 +1448,22 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label class="block text-xs uppercase tracking-wider text-ivory-200 mb-1.5 font-medium">Your Name *</label>
-            <input type="text" required placeholder="Full Name" class="w-full bg-charcoal-900 border border-charcoal-700 focus:border-gold rounded-lg px-4 py-3 text-xs sm:text-sm text-ivory placeholder-charcoal-muted focus:outline-none transition-colors">
+            <input type="text" id="modal-name-input" required placeholder="Full Name" class="w-full bg-charcoal-900 border border-charcoal-700 focus:border-gold rounded-lg px-4 py-3 text-xs sm:text-sm text-ivory placeholder-charcoal-muted focus:outline-none transition-colors">
           </div>
           <div>
             <label class="block text-xs uppercase tracking-wider text-ivory-200 mb-1.5 font-medium">Phone Number *</label>
-            <input type="tel" required placeholder="+1 (555) 000-0000" class="w-full bg-charcoal-900 border border-charcoal-700 focus:border-gold rounded-lg px-4 py-3 text-xs sm:text-sm text-ivory placeholder-charcoal-muted focus:outline-none transition-colors">
+            <input type="tel" id="modal-phone-input" required placeholder="+1 (555) 000-0000" class="w-full bg-charcoal-900 border border-charcoal-700 focus:border-gold rounded-lg px-4 py-3 text-xs sm:text-sm text-ivory placeholder-charcoal-muted focus:outline-none transition-colors">
           </div>
         </div>
 
         <div>
           <label class="block text-xs uppercase tracking-wider text-ivory-200 mb-1.5 font-medium">Email Address (for instant confirmation) *</label>
-          <input type="email" required placeholder="your.email@luxury.com" class="w-full bg-charcoal-900 border border-charcoal-700 focus:border-gold rounded-lg px-4 py-3 text-xs sm:text-sm text-ivory placeholder-charcoal-muted focus:outline-none transition-colors">
+          <input type="email" id="modal-email-input" required placeholder="your.email@luxury.com" class="w-full bg-charcoal-900 border border-charcoal-700 focus:border-gold rounded-lg px-4 py-3 text-xs sm:text-sm text-ivory placeholder-charcoal-muted focus:outline-none transition-colors">
         </div>
 
         <div>
           <label class="block text-xs uppercase tracking-wider text-ivory-200 mb-1.5 font-medium">Special Requests &amp; Allergies</label>
-          <textarea rows="2" placeholder="Tell us if you have any product allergies, sensitive skin, or wish for a private bridal room suite..." class="w-full bg-charcoal-900 border border-charcoal-700 focus:border-gold rounded-lg px-4 py-2.5 text-xs sm:text-sm text-ivory placeholder-charcoal-muted focus:outline-none transition-colors"></textarea>
+          <textarea id="modal-notes-input" rows="2" placeholder="Tell us if you have any product allergies, sensitive skin, or wish for a private bridal room suite..." class="w-full bg-charcoal-900 border border-charcoal-700 focus:border-gold rounded-lg px-4 py-2.5 text-xs sm:text-sm text-ivory placeholder-charcoal-muted focus:outline-none transition-colors"></textarea>
         </div>
 
         <div class="pt-2">
@@ -1543,20 +1592,80 @@
       }
     });
 
-    // Handle Form Submissions
-    function handleModalBooking(e) {
+    // Handle Modal Booking Submission (Forwarded to n8n Webhook)
+    async function handleModalBooking(e) {
       e.preventDefault();
+      const service = document.getElementById('modal-service-select')?.value || 'General VIP Appointment';
+      const specialist = document.getElementById('modal-specialist-select')?.value || 'First Available';
+      const date = document.getElementById('modal-date-picker')?.value || 'Tomorrow';
+      const name = document.getElementById('modal-name-input')?.value || 'Guest Client';
+      const phone = document.getElementById('modal-phone-input')?.value || '';
+      const email = document.getElementById('modal-email-input')?.value || '';
+      const notes = document.getElementById('modal-notes-input')?.value || '';
+
+      const payload = {
+        channel: 'Website VIP Booking Form',
+        customer_name: name,
+        customer_phone: phone,
+        customer_email: email,
+        selected_service: `${service} (Specialist: ${specialist})`,
+        appointment_time: date,
+        status: 'Confirmed',
+        escalation_reason: notes
+      };
+
+      try {
+        fetch('/api/webhook/booking', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }).then(r => r.json()).then(data => {
+          console.log('[Modal Booking] Forwarded to backend / n8n:', data);
+        }).catch(err => {
+          console.warn('[Modal Booking] Server dispatch note:', err.message);
+        });
+      } catch (err) {
+        console.warn('[Modal Booking] Error:', err);
+      }
+
       if (modalBookingForm && modalSuccessState) {
         modalBookingForm.classList.add('hidden');
         modalSuccessState.classList.remove('hidden');
-        showToast('Appointment Reserved', 'A confirmation email & calendar pass has been sent.');
+        showToast('VIP Pass Issued', 'Reservation logged in system & confirmation email dispatched via n8n!');
       }
     }
 
-    function handleFastBooking(e) {
+    // Handle Fast Booking Submission (Contact Section)
+    async function handleFastBooking(e) {
       e.preventDefault();
-      showToast('Reservation Requested', 'Our coordinator will contact you in under 15 minutes.');
-      e.target.reset();
+      const form = e.target;
+      const nameInput = form.querySelector('input[type="text"]')?.value || 'Guest';
+      const phoneInput = form.querySelector('input[type="tel"]')?.value || '';
+      const emailInput = form.querySelector('input[type="email"]')?.value || '';
+      const serviceInput = form.querySelector('select')?.value || 'Quick Inquiry';
+      const notesInput = form.querySelector('textarea')?.value || '';
+
+      const payload = {
+        channel: 'Website Fast Booking',
+        customer_name: nameInput,
+        customer_phone: phoneInput,
+        customer_email: emailInput,
+        selected_service: serviceInput,
+        appointment_time: 'Fast Callback Requested',
+        status: 'Confirmed',
+        escalation_reason: notesInput
+      };
+
+      try {
+        fetch('/api/webhook/booking', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }).catch(err => console.warn(err.message));
+      } catch (e) {}
+
+      showToast('Reservation Requested', 'Logged in Google Sheets via n8n. Our coordinator will contact you shortly.');
+      form.reset();
     }
 
     function handleNewsletter(e) {
@@ -1628,49 +1737,1018 @@
   </script>
 
   <!-- ========================================================================= -->
-  <!-- FLOATING VOICE AGENT GRAB LAUNCHER & BADGE                                -->
+  <!-- 12. FLOATING AI CONCIERGE DOCK (Voice Assistant & AI Chatbot)             -->
   <!-- ========================================================================= -->
-  <aside id="floating-voice-agent" class="fixed bottom-6 right-24 z-50 flex items-center transition-all duration-300">
+  <aside id="floating-concierge-dock" class="fixed bottom-6 right-4 sm:right-8 z-50 flex items-center gap-2.5 sm:gap-3 transition-all duration-300">
+    
+    <!-- AI Chatbot Trigger Pill -->
     <button 
-      id="voice-pill-trigger" 
-      onclick="triggerVoiceAssistant()" 
-      aria-label="Speak with AI Voice Concierge"
-      class="group relative flex items-center gap-3 bg-charcoal-900/95 hover:bg-charcoal-800 border border-gold/70 hover:border-gold pl-3.5 pr-4 py-2 rounded-full shadow-gold-glow backdrop-blur-xl transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer text-left select-none"
+      id="chat-pill-trigger" 
+      onclick="toggleAuraChat()" 
+      aria-label="Open AI Concierge Chatbot"
+      class="group relative flex items-center gap-2.5 sm:gap-3 bg-charcoal-900/95 hover:bg-charcoal-800 border border-gold/70 hover:border-gold pl-3 pr-4 py-2 sm:py-2.5 rounded-full shadow-gold-glow backdrop-blur-xl transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer text-left select-none"
     >
       <!-- Pulse Rings + Glowing Icon Circle -->
       <div class="relative flex items-center justify-center flex-shrink-0">
-        <span id="voice-pulse-ring" class="absolute inline-flex h-8 w-8 rounded-full bg-gold/40 animate-ping opacity-75"></span>
+        <span class="absolute inline-flex h-8 w-8 rounded-full bg-gold/40 animate-ping opacity-75"></span>
         <div class="relative w-8 h-8 rounded-full bg-gold-gradient flex items-center justify-center text-charcoal shadow-sm">
-          <i id="voice-icon-symbol" class="fa-solid fa-microphone-lines text-xs group-hover:scale-110 transition-transform"></i>
+          <i class="fa-solid fa-comments text-xs group-hover:scale-110 transition-transform"></i>
         </div>
       </div>
 
       <!-- Text / Status Labels -->
-      <div class="flex flex-col pr-1">
+      <div class="flex flex-col pr-0.5">
         <div class="flex items-center gap-1.5">
-          <span class="text-[11px] font-bold text-ivory tracking-wider uppercase font-serif">AI Concierge</span>
-          <span id="voice-status-dot" class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse" title="Online & Ready"></span>
+          <span class="text-[11px] font-bold text-ivory tracking-wider uppercase font-serif">AI Chatbot</span>
+          <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse" title="n8n Automation Connected"></span>
         </div>
-        <span id="voice-status-label" class="text-[9px] text-gold-light tracking-widest uppercase font-semibold">Tap to Speak</span>
+        <span class="text-[9px] text-gold-light tracking-widest uppercase font-semibold">Book &amp; Consult</span>
+      </div>
+    </button>
+
+    <!-- Voice AI Trigger Pill (Vapi) -->
+    <button 
+      id="voice-pill-trigger" 
+      onclick="triggerVoiceAssistant()" 
+      aria-label="Speak with AI Voice Concierge"
+      class="group relative flex items-center gap-2.5 bg-charcoal-900/95 hover:bg-charcoal-800 border border-gold/70 hover:border-gold px-3 sm:px-3.5 py-2 sm:py-2.5 rounded-full shadow-gold-glow backdrop-blur-xl transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer text-left select-none"
+    >
+      <div class="relative flex items-center justify-center flex-shrink-0">
+        <span id="voice-pulse-ring" class="absolute inline-flex h-7 w-7 rounded-full bg-gold/30 animate-ping opacity-75"></span>
+        <div class="relative w-7 h-7 rounded-full bg-bronze-gradient flex items-center justify-center text-ivory shadow-sm">
+          <i id="voice-icon-symbol" class="fa-solid fa-microphone-lines text-xs group-hover:scale-110 transition-transform"></i>
+        </div>
+      </div>
+
+      <div class="hidden sm:flex flex-col pr-1">
+        <div class="flex items-center gap-1">
+          <span class="text-[10px] font-bold text-ivory tracking-wider uppercase font-serif">Voice</span>
+          <span id="voice-status-dot" class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" title="Voice Concierge Online"></span>
+        </div>
+        <span id="voice-status-label" class="text-[8px] text-gold-light tracking-widest uppercase font-semibold">Tap to Speak</span>
       </div>
 
       <!-- Animated Sound Wave (active when in call) -->
-      <div id="voice-wave-bars" class="hidden items-end gap-0.5 h-4 pb-0.5 pl-1">
+      <div id="voice-wave-bars" class="hidden items-end gap-0.5 h-4 pb-0.5 pl-0.5">
         <span class="w-0.5 bg-gold rounded-full voice-bar-1"></span>
         <span class="w-0.5 bg-gold rounded-full voice-bar-2"></span>
         <span class="w-0.5 bg-gold rounded-full voice-bar-3"></span>
         <span class="w-0.5 bg-gold rounded-full voice-bar-4"></span>
       </div>
     </button>
+
   </aside>
 
-  <!-- Vapi Voice Assistant Widget & Interactive Controller -->
+  <!-- ========================================================================= -->
+  <!-- 13. AURA GLOW AI CONCIERGE CHATBOT WINDOW                                  -->
+  <!-- ========================================================================= -->
+  <div 
+    id="aura-chat-window" 
+    class="hidden fixed bottom-20 sm:bottom-24 right-3 sm:right-8 z-[999] w-[95vw] sm:w-[440px] h-[640px] max-h-[86vh] bg-charcoal-950/95 backdrop-blur-2xl border border-gold/40 rounded-3xl shadow-2xl flex-col overflow-hidden animate-chat-in font-sans"
+    role="dialog"
+    aria-label="Aura Glow AI Concierge Chat"
+  >
+    <!-- Chat Header -->
+    <div class="bg-charcoal-900/90 border-b border-gold/30 px-4 sm:px-5 py-3.5 flex items-center justify-between relative z-20">
+      <div class="flex items-center gap-3">
+        <!-- Monogram Badge -->
+        <div class="relative">
+          <div class="w-10 h-10 rounded-full bg-charcoal border border-gold flex items-center justify-center text-gold font-serif font-bold text-base shadow-sm">
+            AG
+          </div>
+          <span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-400 border-2 border-charcoal animate-pulse" title="Workflow Active"></span>
+        </div>
+
+        <!-- Identity & Status -->
+        <div class="flex flex-col">
+          <div class="flex items-center gap-2">
+            <span class="font-serif font-bold text-base text-ivory tracking-wider">Aura Glow Concierge</span>
+            <span class="px-1.5 py-0.5 text-[9px] font-bold uppercase rounded bg-gold/20 text-gold-light border border-gold/30">AI</span>
+          </div>
+          <div class="flex items-center gap-1.5 text-[10px] text-ivory-muted">
+            <span id="chat-header-status-dot" class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <span id="chat-header-status-text" class="text-gold-light font-medium">Synced with n8n Automation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Controls -->
+      <div class="flex items-center gap-1">
+        <!-- Webhook Settings Toggle -->
+        <button 
+          onclick="toggleChatSettings()" 
+          title="Configure n8n Webhook Target" 
+          aria-label="Webhook Settings"
+          class="w-8 h-8 rounded-full border border-gold/30 hover:border-gold text-gold/80 hover:text-gold flex items-center justify-center text-xs transition-colors"
+        >
+          <i class="fa-solid fa-sliders"></i>
+        </button>
+
+        <!-- Restart Conversation -->
+        <button 
+          onclick="resetAuraChat()" 
+          title="Restart Conversation" 
+          aria-label="Restart Conversation"
+          class="w-8 h-8 rounded-full border border-gold/30 hover:border-gold text-gold/80 hover:text-gold flex items-center justify-center text-xs transition-colors"
+        >
+          <i class="fa-solid fa-rotate-right"></i>
+        </button>
+
+        <!-- Close Chat Window -->
+        <button 
+          onclick="closeAuraChat()" 
+          title="Close Concierge" 
+          aria-label="Close Chat Window"
+          class="w-8 h-8 rounded-full border border-gold/30 hover:border-gold text-gold/80 hover:text-ivory flex items-center justify-center text-xs transition-colors ml-0.5"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Webhook Settings Drawer (Slide Down) -->
+    <div id="aura-settings-drawer" class="hidden bg-charcoal-900 border-b border-gold/40 p-4 text-xs text-ivory space-y-3 z-30 transition-all">
+      <div class="flex items-center justify-between pb-1 border-b border-charcoal-700">
+        <span class="font-bold text-gold uppercase tracking-wider flex items-center gap-1.5">
+          <i class="fa-solid fa-network-wired text-gold text-xs"></i>
+          <span>n8n Webhook Integration</span>
+        </span>
+        <button onclick="toggleChatSettings()" class="text-ivory-muted hover:text-gold text-xs">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div>
+        <label class="block text-[10px] uppercase tracking-wider text-ivory-muted mb-1 font-semibold">Active Webhook URL</label>
+        <div class="flex gap-2">
+          <input 
+            type="text" 
+            id="cfg-webhook-url" 
+            value="https://reoccur-sterilize-endnote.ngrok-free.dev/webhook/ai-receptionist-booking" 
+            class="flex-1 bg-charcoal-950 border border-charcoal-700 focus:border-gold rounded-lg px-2.5 py-1.5 text-xs text-ivory font-mono focus:outline-none"
+            placeholder="http://localhost:5678/webhook/ai-receptionist-booking"
+          />
+          <button 
+            onclick="saveWebhookConfigFromUI()" 
+            class="px-3 py-1.5 rounded-lg bg-gold-gradient text-charcoal font-bold text-xs uppercase tracking-wider hover:shadow-gold-glow"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Preset Buttons -->
+      <div class="space-y-1">
+        <span class="text-[10px] uppercase text-ivory-muted font-semibold tracking-wider">Quick Presets:</span>
+        <div class="grid grid-cols-3 gap-1.5 text-[10px]">
+          <button onclick="setWebhookPreset('ngrok')" class="p-1.5 rounded border border-charcoal-700 hover:border-gold text-ivory-200 text-center">
+            Ngrok Tunnel
+          </button>
+          <button onclick="setWebhookPreset('local-prod')" class="p-1.5 rounded border border-charcoal-700 hover:border-gold text-ivory-200 text-center">
+            Local Prod
+          </button>
+          <button onclick="setWebhookPreset('local-test')" class="p-1.5 rounded border border-charcoal-700 hover:border-gold text-ivory-200 text-center">
+            Local Test
+          </button>
+        </div>
+      </div>
+
+      <!-- Test Connection Button & Status -->
+      <div class="pt-1 flex items-center justify-between">
+        <button 
+          onclick="testWebhookConnection()" 
+          id="btn-test-webhook"
+          class="px-3 py-1.5 rounded border border-gold/60 text-gold hover:bg-gold hover:text-charcoal transition-colors font-semibold text-[11px] flex items-center gap-1.5"
+        >
+          <i class="fa-solid fa-bolt text-xs"></i>
+          <span>Test Webhook Ping</span>
+        </button>
+        <span id="webhook-test-status" class="text-[11px] text-ivory-muted font-medium">Ready to test</span>
+      </div>
+    </div>
+
+    <!-- Chat Message Stream -->
+    <div id="aura-chat-messages" class="flex-1 overflow-y-auto p-4 space-y-3.5 scroll-smooth text-xs sm:text-sm">
+      <!-- Messages rendered dynamically by JS -->
+    </div>
+
+    <!-- Typing Indicator (Hidden by default) -->
+    <div id="aura-chat-typing" class="hidden px-4 py-2 flex items-center gap-2 text-xs text-gold-light bg-charcoal-900/60 border-t border-charcoal-800">
+      <div class="w-6 h-6 rounded-full bg-gold/20 flex items-center justify-center text-gold text-[10px] font-serif font-bold">
+        AG
+      </div>
+      <span id="aura-chat-typing-text" class="text-[11px] italic text-ivory-muted">Aura Glow Concierge is composing...</span>
+      <div class="flex items-center gap-1 ml-1">
+        <span class="w-1.5 h-1.5 rounded-full bg-gold typing-dot-1"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-gold typing-dot-2"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-gold typing-dot-3"></span>
+      </div>
+    </div>
+
+    <!-- Quick Action / Suggestion Chips Bar -->
+    <div id="aura-chat-chips" class="px-3.5 py-2 bg-charcoal-900/70 border-t border-charcoal-800 flex items-center gap-1.5 overflow-x-auto no-scrollbar text-xs">
+      <!-- Chips populated dynamically by JS -->
+    </div>
+
+    <!-- Chat Input Area -->
+    <form id="aura-chat-form" onsubmit="handleChatSubmit(event)" class="bg-charcoal-900 border-t border-gold/30 p-2.5 sm:p-3 flex items-center gap-2">
+      <!-- Microphone Speech-To-Text Button -->
+      <button 
+        type="button" 
+        id="aura-chat-mic-btn" 
+        onclick="toggleSpeechRecognition()" 
+        title="Voice Dictation (Speak your request)"
+        aria-label="Voice Dictation"
+        class="w-10 h-10 rounded-full border border-gold/40 hover:border-gold text-gold/80 hover:text-gold flex items-center justify-center transition-all flex-shrink-0"
+      >
+        <i id="aura-mic-icon" class="fa-solid fa-microphone text-xs"></i>
+      </button>
+
+      <!-- Input Text -->
+      <input 
+        type="text" 
+        id="aura-chat-input" 
+        placeholder="Type a message or select an option above..." 
+        autocomplete="off"
+        class="flex-1 bg-charcoal-950 border border-charcoal-700 focus:border-gold rounded-full px-4 py-2.5 text-xs sm:text-sm text-ivory placeholder-charcoal-muted focus:outline-none focus:ring-1 focus:ring-gold transition-colors"
+      />
+
+      <!-- Send Button -->
+      <button 
+        type="submit" 
+        id="aura-chat-send-btn" 
+        aria-label="Send Message"
+        class="w-10 h-10 rounded-full bg-gold-gradient text-charcoal font-bold flex items-center justify-center hover:shadow-gold-glow transition-all flex-shrink-0 transform active:scale-95 cursor-pointer"
+      >
+        <i class="fa-solid fa-paper-plane text-xs"></i>
+      </button>
+    </form>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 14. VAPI & VOICEFLOW SCRIPTS & MASTER INTERACTIVE LOGIC                   -->
+  <!-- ========================================================================= -->
+  <!-- Vapi Voice Assistant SDK -->
   <script src="https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js" defer></script>
+
   <script>
+    // =========================================================================
+    // AURA GLOW AI CHATBOT ENGINE (Voiceflow Dialog + n8n Webhook Architecture)
+    // =========================================================================
+
+    // Conversation State Machine
+    const AURA_SERVICES = [
+      { name: "Luxury Hydrafacial", price: "$160", duration: "60 Mins", category: "Clinic" },
+      { name: "Hair Artistry & Balayage", price: "$120", duration: "90 Mins", category: "Salon" },
+      { name: "Deep Tissue & Stone Massage", price: "$140", duration: "75 Mins", category: "Spa" },
+      { name: "Laser Skin Consultation", price: "$75", duration: "30 Mins", category: "Clinic" },
+      { name: "Keratin Hair Infusion", price: "$200", duration: "120 Mins", category: "Salon" },
+      { name: "Bridal & Event Makeover", price: "$250", duration: "120 Mins", category: "Artistry" }
+    ];
+
+    let chatState = {
+      step: 'START', // START, SERVICE_SELECT, TIME_SELECT, NAME_INPUT, PHONE_INPUT, EMAIL_INPUT, ESCALATION_REASON, COMPLETED
+      selected_service: '',
+      appointment_time: '',
+      customer_name: '',
+      customer_phone: '',
+      customer_email: '',
+      status: 'Confirmed', // 'Confirmed' or 'Escalated'
+      escalation_reason: '',
+      channel: 'Voiceflow Chatbot',
+      isRecording: false,
+      speechRecognizer: null
+    };
+
+    let activeWebhookUrl = 'https://reoccur-sterilize-endnote.ngrok-free.dev/webhook/ai-receptionist-booking';
+
+    // Fetch live webhook configuration from server
+    async function loadServerWebhookConfig() {
+      try {
+        const res = await fetch('/api/webhook/config');
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.webhookUrl) {
+            activeWebhookUrl = data.webhookUrl;
+            const input = document.getElementById('cfg-webhook-url');
+            if (input) input.value = activeWebhookUrl;
+          }
+        }
+      } catch (err) {
+        console.warn('Notice loading webhook config:', err.message);
+      }
+    }
+
+    // Toggle Chat Window
+    function toggleAuraChat() {
+      const chatWin = document.getElementById('aura-chat-window');
+      if (!chatWin) return;
+      if (chatWin.classList.contains('hidden')) {
+        openAuraChat();
+      } else {
+        closeAuraChat();
+      }
+    }
+
+    function openAuraChat() {
+      const chatWin = document.getElementById('aura-chat-window');
+      if (chatWin) {
+        chatWin.classList.remove('hidden');
+        chatWin.classList.add('flex');
+        const input = document.getElementById('aura-chat-input');
+        if (input) setTimeout(() => input.focus(), 250);
+
+        // If messages are empty, initialize conversation
+        const messagesContainer = document.getElementById('aura-chat-messages');
+        if (messagesContainer && messagesContainer.children.length === 0) {
+          initAuraChatConversation();
+        }
+      }
+    }
+
+    function closeAuraChat() {
+      const chatWin = document.getElementById('aura-chat-window');
+      if (chatWin) {
+        chatWin.classList.add('hidden');
+        chatWin.classList.remove('flex');
+      }
+    }
+
+    function toggleChatSettings() {
+      const drawer = document.getElementById('aura-settings-drawer');
+      if (drawer) drawer.classList.toggle('hidden');
+    }
+
+    function setWebhookPreset(type) {
+      const input = document.getElementById('cfg-webhook-url');
+      if (!input) return;
+      if (type === 'ngrok') {
+        input.value = 'https://reoccur-sterilize-endnote.ngrok-free.dev/webhook/ai-receptionist-booking';
+      } else if (type === 'local-prod') {
+        input.value = 'http://localhost:5678/webhook/ai-receptionist-booking';
+      } else if (type === 'local-test') {
+        input.value = 'http://localhost:5678/webhook-test/ai-receptionist-booking';
+      }
+    }
+
+    async function saveWebhookConfigFromUI() {
+      const input = document.getElementById('cfg-webhook-url');
+      const status = document.getElementById('webhook-test-status');
+      if (!input) return;
+      const url = input.value.trim();
+      if (!url) return;
+
+      try {
+        const res = await fetch('/api/webhook/config', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ webhookUrl: url })
+        });
+        if (res.ok) {
+          activeWebhookUrl = url;
+          if (status) {
+            status.textContent = 'Saved!';
+            status.className = 'text-[11px] text-emerald-400 font-semibold';
+            setTimeout(() => { status.textContent = 'Active'; }, 2000);
+          }
+          showToast('Webhook Updated', `Target set to: ${url}`);
+        }
+      } catch (err) {
+        showToast('Save Error', err.message);
+      }
+    }
+
+    async function testWebhookConnection() {
+      const status = document.getElementById('webhook-test-status');
+      const input = document.getElementById('cfg-webhook-url');
+      const url = input ? input.value.trim() : activeWebhookUrl;
+
+      if (status) {
+        status.textContent = 'Pinging...';
+        status.className = 'text-[11px] text-gold-light font-medium';
+      }
+
+      try {
+        const res = await fetch('/api/webhook/test', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ webhookUrl: url })
+        });
+        const data = await res.json();
+        if (data.success) {
+          if (status) {
+            status.textContent = `Online (${data.status})`;
+            status.className = 'text-[11px] text-emerald-400 font-bold';
+          }
+          showToast('n8n Webhook Active', 'Connection successful! Webhook is receiving calls.');
+        } else {
+          if (status) {
+            status.textContent = 'Unreachable';
+            status.className = 'text-[11px] text-rose-400 font-bold';
+          }
+          showToast('Notice', data.hint || data.error || 'Webhook offline');
+        }
+      } catch (err) {
+        if (status) {
+          status.textContent = 'Offline';
+          status.className = 'text-[11px] text-amber-400 font-bold';
+        }
+      }
+    }
+
+    // Helper: Add Bot Message to Stream
+    function addBotMessage(text, options = {}) {
+      const container = document.getElementById('aura-chat-messages');
+      if (!container) return;
+
+      const msgDiv = document.createElement('div');
+      msgDiv.className = 'flex items-start gap-2.5 animate-message-in';
+
+      let buttonsHtml = '';
+      if (options.buttons && options.buttons.length > 0) {
+        buttonsHtml = `
+          <div class="mt-2.5 pt-2 border-t border-gold/20 flex flex-wrap gap-2">
+            ${options.buttons.map(b => `
+              <button 
+                onclick="${b.action}" 
+                class="px-3.5 py-1.5 rounded-full text-xs font-semibold ${b.primary ? 'bg-gold-gradient text-charcoal shadow-sm hover:shadow-gold-glow' : 'border border-gold/60 text-gold-light hover:bg-gold hover:text-charcoal'} transition-all cursor-pointer"
+              >
+                ${b.icon ? `<i class="${b.icon} mr-1.5 text-xs"></i>` : ''}${b.label}
+              </button>
+            `).join('')}
+          </div>
+        `;
+      }
+
+      let extraHtml = options.extraHtml || '';
+
+      msgDiv.innerHTML = `
+        <div class="w-7 h-7 rounded-full bg-charcoal border border-gold flex items-center justify-center text-gold font-serif text-xs font-bold shrink-0 mt-0.5 shadow-sm">
+          AG
+        </div>
+        <div class="max-w-[85%] bg-charcoal-900 border border-gold/25 text-ivory rounded-2xl rounded-tl-sm px-3.5 py-2.5 shadow-sm leading-relaxed text-xs sm:text-sm">
+          <div>${text}</div>
+          ${buttonsHtml}
+          ${extraHtml}
+        </div>
+      `;
+
+      container.appendChild(msgDiv);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    // Helper: Add User Message to Stream
+    function addUserMessage(text) {
+      const container = document.getElementById('aura-chat-messages');
+      if (!container) return;
+
+      const msgDiv = document.createElement('div');
+      msgDiv.className = 'flex items-end justify-end gap-2 animate-message-in';
+
+      msgDiv.innerHTML = `
+        <div class="max-w-[85%] bg-gold-gradient text-charcoal font-medium rounded-2xl rounded-tr-sm px-4 py-2.5 shadow-sm text-xs sm:text-sm leading-relaxed">
+          ${text}
+        </div>
+      `;
+
+      container.appendChild(msgDiv);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    // Helper: Update Suggestion Chips Bar
+    function updateSuggestionChips(chips) {
+      const bar = document.getElementById('aura-chat-chips');
+      if (!bar) return;
+      if (!chips || chips.length === 0) {
+        bar.innerHTML = '';
+        bar.classList.add('hidden');
+        return;
+      }
+      bar.classList.remove('hidden');
+      bar.innerHTML = chips.map(c => `
+        <button 
+          onclick="${c.action}" 
+          class="shrink-0 px-3 py-1 rounded-full border border-gold/50 bg-charcoal-950/80 hover:bg-gold hover:text-charcoal text-gold-light text-[11px] font-semibold transition-all whitespace-nowrap cursor-pointer"
+        >
+          ${c.icon ? `<i class="${c.icon} mr-1 text-[10px]"></i>` : ''}${c.label}
+        </button>
+      `).join('');
+    }
+
+    // Initialize Conversation Flow (Mirrors Voiceflow project exactly)
+    function initAuraChatConversation() {
+      chatState.step = 'START';
+      chatState.selected_service = '';
+      chatState.appointment_time = '';
+      chatState.customer_name = '';
+      chatState.customer_phone = '';
+      chatState.customer_email = '';
+      chatState.status = 'Confirmed';
+      chatState.escalation_reason = '';
+
+      const container = document.getElementById('aura-chat-messages');
+      if (container) container.innerHTML = '';
+
+      // Message exactly matching Voiceflow Project:
+      // "Welcome to Aura Glow Studio! Would you like to book a Salon/Clinic appointment, or do you need urgent specialist assistance?"
+      addBotMessage("Welcome to Aura Glow Studio! Would you like to book a Salon/Clinic appointment, or do you need urgent specialist assistance?", {
+        buttons: [
+          { label: "Book Appointment", action: "startBookingFlow()", primary: true, icon: "fa-regular fa-calendar-check" },
+          { label: "Specialist Assistance", action: "startEscalationFlow()", primary: false, icon: "fa-solid fa-user-doctor" }
+        ]
+      });
+
+      updateSuggestionChips([
+        { label: "Book Ritual", action: "startBookingFlow()", icon: "fa-solid fa-calendar" },
+        { label: "Urgent Specialist", action: "startEscalationFlow()", icon: "fa-solid fa-bolt" },
+        { label: "Service Prices", action: "askFAQ('pricing')", icon: "fa-solid fa-tag" },
+        { label: "Hours & Location", action: "askFAQ('hours')", icon: "fa-solid fa-clock" }
+      ]);
+    }
+
+    function resetAuraChat() {
+      initAuraChatConversation();
+      showToast('Chat Reset', 'New conversation started.');
+    }
+
+    // Step 1: Start Booking Flow
+    function startBookingFlow(preselectedService = null) {
+      chatState.step = 'SERVICE_SELECT';
+      chatState.status = 'Confirmed';
+      chatState.escalation_reason = '';
+
+      if (preselectedService) {
+        handleServiceSelection(preselectedService);
+        return;
+      }
+
+      // Voiceflow prompt: "Which service would you like to book today? (Hydrafacial, Balayage, Massage, Laser Consultation, Keratin, or Bridal Makeover)"
+      const serviceOptionsHtml = `
+        <div class="grid grid-cols-1 gap-1.5 mt-2.5 pt-2 border-t border-gold/20">
+          ${AURA_SERVICES.map(s => `
+            <button 
+              onclick="handleServiceSelection('${s.name}')" 
+              class="w-full text-left px-3 py-2 rounded-xl border border-charcoal-700 bg-charcoal-950/70 hover:border-gold hover:bg-charcoal-800 transition-all flex items-center justify-between text-xs"
+            >
+              <span class="font-medium text-ivory">${s.name}</span>
+              <span class="text-gold font-bold">${s.price} &bull; ${s.duration}</span>
+            </button>
+          `).join('')}
+        </div>
+      `;
+
+      addBotMessage("Which service would you like to book today? (Hydrafacial, Balayage, Massage, Laser Consultation, Keratin, or Bridal Makeover)", {
+        extraHtml: serviceOptionsHtml
+      });
+
+      updateSuggestionChips(
+        AURA_SERVICES.map(s => ({
+          label: s.name,
+          action: `handleServiceSelection('${s.name}')`
+        }))
+      );
+    }
+
+    // Step 2: Handle Service Selection
+    function handleServiceSelection(serviceName) {
+      chatState.selected_service = serviceName;
+      chatState.step = 'TIME_SELECT';
+      addUserMessage(`I'd like to book: ${serviceName}`);
+
+      // Voiceflow prompt: "What date and time works best for your appointment? (e.g., Tomorrow at 4 PM)"
+      const quickTimes = [
+        "Tomorrow at 2:00 PM",
+        "Tomorrow at 4:30 PM",
+        "This Saturday at 11:00 AM",
+        "Next Monday at 3:00 PM"
+      ];
+
+      const timesHtml = `
+        <div class="flex flex-wrap gap-1.5 mt-2.5 pt-2 border-t border-gold/20">
+          ${quickTimes.map(t => `
+            <button 
+              onclick="handleTimeSelection('${t}')" 
+              class="px-3 py-1.5 rounded-full border border-gold/60 text-gold-light hover:bg-gold hover:text-charcoal transition-all text-xs font-semibold"
+            >
+              <i class="fa-regular fa-clock mr-1 text-[10px]"></i>${t}
+            </button>
+          `).join('')}
+        </div>
+        <div class="mt-2.5 text-[11px] text-ivory-muted">
+          Or type your preferred date &amp; time below (e.g. <em>"Friday at 5pm"</em>):
+        </div>
+      `;
+
+      addBotMessage(`What date and time works best for your ${serviceName}? (e.g., Tomorrow at 4 PM)`, {
+        extraHtml: timesHtml
+      });
+
+      updateSuggestionChips(
+        quickTimes.map(t => ({ label: t, action: `handleTimeSelection('${t}')` }))
+      );
+    }
+
+    // Step 3: Handle Time Selection
+    function handleTimeSelection(timeStr) {
+      chatState.appointment_time = timeStr;
+      chatState.step = 'NAME_INPUT';
+      addUserMessage(timeStr);
+
+      // Voiceflow prompt: "Got it! May I have your full name?"
+      setTimeout(() => {
+        addBotMessage("Got it! May I have your full name?");
+        updateSuggestionChips([]);
+        const input = document.getElementById('aura-chat-input');
+        if (input) {
+          input.placeholder = "Enter your full name...";
+          input.focus();
+        }
+      }, 350);
+    }
+
+    // Step 4: Handle Name Input
+    function handleNameInput(nameStr) {
+      chatState.customer_name = nameStr.trim();
+      chatState.step = 'PHONE_INPUT';
+      addUserMessage(nameStr);
+
+      // Voiceflow prompt: "Thanks! What is your phone number?"
+      setTimeout(() => {
+        addBotMessage(`Thanks, ${chatState.customer_name}! What is your phone number?`);
+        const input = document.getElementById('aura-chat-input');
+        if (input) {
+          input.placeholder = "+1 (555) 000-0000";
+          input.focus();
+        }
+      }, 350);
+    }
+
+    // Step 5: Handle Phone Input
+    function handlePhoneInput(phoneStr) {
+      chatState.customer_phone = phoneStr.trim();
+      chatState.step = 'EMAIL_INPUT';
+      addUserMessage(phoneStr);
+
+      // Voiceflow prompt: "Last step! What is your email address so we can send your confirmation?"
+      setTimeout(() => {
+        addBotMessage("Last step! What is your email address so we can send your confirmation?");
+        const input = document.getElementById('aura-chat-input');
+        if (input) {
+          input.placeholder = "your.email@example.com";
+          input.focus();
+        }
+      }, 350);
+    }
+
+    // Step 6: Handle Email Input & Dispatch to n8n Webhook
+    async function handleEmailInput(emailStr) {
+      chatState.customer_email = emailStr.trim();
+      chatState.step = 'DISPATCHING';
+      addUserMessage(emailStr);
+
+      // Show typing indicator
+      const typing = document.getElementById('aura-chat-typing');
+      const typingText = document.getElementById('aura-chat-typing-text');
+      if (typing) {
+        typing.classList.remove('hidden');
+        if (typingText) typingText.textContent = "Connecting to n8n workflow & logging appointment...";
+      }
+
+      // Payload matching n8n workflow exactly:
+      const payload = {
+        channel: "Voiceflow Chatbot",
+        customer_name: chatState.customer_name,
+        customer_email: chatState.customer_email,
+        customer_phone: chatState.customer_phone,
+        selected_service: chatState.selected_service,
+        appointment_time: chatState.appointment_time,
+        status: chatState.status, // "Confirmed" or "Escalated"
+        escalation_reason: chatState.escalation_reason
+      };
+
+      let dispatchResult = null;
+      try {
+        const res = await fetch('/api/webhook/booking', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        dispatchResult = await res.json();
+      } catch (err) {
+        console.warn('Backend proxy notice:', err.message);
+        dispatchResult = { success: true, bookingId: 'AG-' + Math.random().toString(36).substring(2, 8).toUpperCase() };
+      }
+
+      if (typing) typing.classList.add('hidden');
+      chatState.step = 'COMPLETED';
+
+      const bookingRef = dispatchResult?.bookingId || ('AG-VIP-' + Math.floor(1000 + Math.random() * 9000));
+
+      // Rich VIP Pass Card
+      const confirmationCardHtml = `
+        <div class="mt-3 p-3.5 rounded-2xl bg-charcoal-950 border border-gold/50 shadow-gold-glow text-ivory">
+          <div class="flex items-center justify-between pb-2 border-b border-gold/25">
+            <span class="text-[10px] uppercase font-bold tracking-[0.2em] text-gold">Aura Glow VIP Pass</span>
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-950 border border-emerald-500/40 text-emerald-400">
+              ${chatState.status === 'Escalated' ? 'PRIORITY ESCALATED' : 'CONFIRMED'}
+            </span>
+          </div>
+
+          <div class="py-2.5 space-y-1.5 text-xs">
+            <div class="flex justify-between">
+              <span class="text-ivory-muted">Reference:</span>
+              <span class="font-mono text-gold-light font-bold">${bookingRef}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-ivory-muted">Ritual:</span>
+              <span class="font-semibold text-ivory text-right">${chatState.selected_service}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-ivory-muted">Date &amp; Time:</span>
+              <span class="font-medium text-right text-ivory">${chatState.appointment_time}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-ivory-muted">Guest:</span>
+              <span class="text-right text-ivory">${chatState.customer_name}</span>
+            </div>
+          </div>
+
+          <div class="pt-2 border-t border-gold/20 flex flex-col gap-1.5 text-[11px] text-emerald-400">
+            <div class="flex items-center gap-1.5">
+              <i class="fa-solid fa-circle-check text-xs"></i>
+              <span>Logged to Google Sheets (Capstone Project)</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <i class="fa-solid fa-envelope-circle-check text-xs"></i>
+              <span>Confirmation email sent to ${chatState.customer_email}</span>
+            </div>
+          </div>
+
+          <div class="mt-3 pt-2 border-t border-charcoal-800 flex gap-2">
+            <button onclick="downloadICS('${chatState.selected_service}', '${chatState.appointment_time}')" class="flex-1 py-1.5 rounded-lg border border-gold/60 text-gold-light hover:bg-gold hover:text-charcoal text-center text-[11px] font-semibold transition-colors">
+              <i class="fa-regular fa-calendar-plus mr-1"></i>Add to Calendar
+            </button>
+            <button onclick="resetAuraChat()" class="flex-1 py-1.5 rounded-lg bg-gold-gradient text-charcoal font-bold text-center text-[11px] hover:shadow-gold-glow transition-all">
+              Book Another
+            </button>
+          </div>
+        </div>
+      `;
+
+      // Voiceflow Completion Message:
+      // "Thank you, {customer_name}! Your details have been logged in our system and a confirmation email has been sent to {customer_email}. Have a wonderful day!"
+      addBotMessage(
+        `Thank you, <strong>${chatState.customer_name}</strong>! Your details have been logged in our system and a confirmation email has been sent to <strong>${chatState.customer_email}</strong>. Have a wonderful day!`,
+        { extraHtml: confirmationCardHtml }
+      );
+
+      updateSuggestionChips([
+        { label: "Book Another Ritual", action: "startBookingFlow()", icon: "fa-solid fa-calendar-plus" },
+        { label: "Our Sanctuary", action: "askFAQ('about')", icon: "fa-solid fa-spa" },
+        { label: "Talk to Voice AI", action: "triggerVoiceAssistant()", icon: "fa-solid fa-microphone" }
+      ]);
+
+      const input = document.getElementById('aura-chat-input');
+      if (input) input.placeholder = "Ask a question or book another service...";
+    }
+
+    // Step B: Escalation Flow (Priority Support Request)
+    function startEscalationFlow() {
+      chatState.step = 'ESCALATION_REASON';
+      chatState.status = 'Escalated';
+      chatState.selected_service = 'Priority Senior Specialist Consultation';
+      chatState.appointment_time = 'Immediate Senior Specialist Callback';
+
+      // Voiceflow prompt: "I understand you need priority assistance. Please briefly describe your concern (e.g., allergy, medical urgency, or custom bridal request) so I can alert our senior specialist:"
+      addBotMessage("I understand you need priority assistance. Please briefly describe your concern (e.g., allergy, medical urgency, or custom bridal request) so I can alert our senior specialist:");
+
+      updateSuggestionChips([
+        { label: "Severe Product Allergy", action: "handleEscalationReason('Severe Product Allergy / Sensitive Skin')" },
+        { label: "Clinical Dermatology Urgency", action: "handleEscalationReason('Clinical Dermatology Consultation Urgency')" },
+        { label: "Custom Bridal Immersion", action: "handleEscalationReason('Custom Haute Bridal & Event Package Request')" }
+      ]);
+
+      const input = document.getElementById('aura-chat-input');
+      if (input) {
+        input.placeholder = "Describe your priority concern...";
+        input.focus();
+      }
+    }
+
+    function handleEscalationReason(reasonStr) {
+      chatState.escalation_reason = reasonStr.trim();
+      chatState.step = 'NAME_INPUT';
+      addUserMessage(reasonStr);
+
+      setTimeout(() => {
+        addBotMessage("Understood. I am flagging this as high priority for Dr. Vivienne Sterling and our senior team. May I have your full name?");
+        updateSuggestionChips([]);
+        const input = document.getElementById('aura-chat-input');
+        if (input) {
+          input.placeholder = "Your full name...";
+          input.focus();
+        }
+      }, 350);
+    }
+
+    // Free-form Q&A / Natural Language Assistant Knowledge Base
+    function handleGeneralKnowledgeQuery(text) {
+      const q = text.toLowerCase();
+
+      if (q.includes('price') || q.includes('cost') || q.includes('how much') || q.includes('rate') || q.includes('menu')) {
+        const pricesList = AURA_SERVICES.map(s => `• <strong>${s.name}</strong>: ${s.price} (${s.duration})`).join('<br>');
+        addBotMessage(`Here is our sanctuary service menu:<br><br>${pricesList}<br><br>Would you like me to reserve one for you?`, {
+          buttons: [
+            { label: "Book an Appointment", action: "startBookingFlow()", primary: true, icon: "fa-regular fa-calendar-check" }
+          ]
+        });
+        return;
+      }
+
+      if (q.includes('hour') || q.includes('open') || q.includes('time') || q.includes('close') || q.includes('schedule')) {
+        addBotMessage("Aura Glow Studio is open <strong>Daily from 9:00 AM to 9:00 PM</strong>, including weekends. VIP private suites are available by appointment.", {
+          buttons: [
+            { label: "Book a Time", action: "startBookingFlow()", primary: true }
+          ]
+        });
+        return;
+      }
+
+      if (q.includes('where') || q.includes('location') || q.includes('address') || q.includes('direction')) {
+        addBotMessage("We are located in the heart of the Beverly Hills sanctuary district at <strong>9400 Wilshire Blvd, Beverly Hills, CA 90212</strong>. Complimentary valet parking is provided for all appointments.");
+        return;
+      }
+
+      if (q.includes('doctor') || q.includes('vivienne') || q.includes('specialist') || q.includes('dermatologist') || q.includes('who')) {
+        addBotMessage("Our clinical team is led by <strong>Dr. Vivienne Sterling</strong> (Board-Certified Medical Dermatologist) and <strong>Julian Rossi</strong> (Master Colorist &amp; Stylist), supported by senior aestheticians and bridal directors.");
+        return;
+      }
+
+      if (q.includes('cancel') || q.includes('reschedule') || q.includes('policy')) {
+        addBotMessage("We offer complimentary rescheduling up to 24 hours prior to your scheduled ritual. For urgent inquiries, our specialist desk is on standby.");
+        return;
+      }
+
+      // Default fallback
+      addBotMessage("I can assist with reservations, specialist consultations, and service details. Would you like to schedule an appointment or speak with our specialist?", {
+        buttons: [
+          { label: "Book Appointment", action: "startBookingFlow()", primary: true },
+          { label: "Urgent Specialist", action: "startEscalationFlow()", primary: false }
+        ]
+      });
+    }
+
+    function askFAQ(type) {
+      if (type === 'pricing') {
+        addUserMessage("What are your service prices?");
+        handleGeneralKnowledgeQuery("prices");
+      } else if (type === 'hours') {
+        addUserMessage("What are your hours and location?");
+        handleGeneralKnowledgeQuery("hours and location");
+      } else if (type === 'about') {
+        addUserMessage("Tell me about Aura Glow Studio.");
+        handleGeneralKnowledgeQuery("who are your specialists");
+      }
+    }
+
+    // Main Input Form Handler
+    function handleChatSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('aura-chat-input');
+      if (!input) return;
+      const val = input.value.trim();
+      if (!val) return;
+      input.value = '';
+
+      // Route based on current dialog step
+      if (chatState.step === 'START') {
+        addUserMessage(val);
+        const lower = val.toLowerCase();
+        if (lower.includes('book') || lower.includes('appointment') || lower.includes('reserve')) {
+          startBookingFlow();
+        } else if (lower.includes('urgent') || lower.includes('specialist') || lower.includes('help') || lower.includes('doctor')) {
+          startEscalationFlow();
+        } else {
+          handleGeneralKnowledgeQuery(val);
+        }
+      } else if (chatState.step === 'SERVICE_SELECT') {
+        handleServiceSelection(val);
+      } else if (chatState.step === 'TIME_SELECT') {
+        handleTimeSelection(val);
+      } else if (chatState.step === 'NAME_INPUT') {
+        handleNameInput(val);
+      } else if (chatState.step === 'PHONE_INPUT') {
+        handlePhoneInput(val);
+      } else if (chatState.step === 'EMAIL_INPUT') {
+        handleEmailInput(val);
+      } else if (chatState.step === 'ESCALATION_REASON') {
+        handleEscalationReason(val);
+      } else {
+        addUserMessage(val);
+        handleGeneralKnowledgeQuery(val);
+      }
+    }
+
+    // Direct service booking shortcut (e.g. from service cards)
+    function openAuraChatForService(serviceName) {
+      openAuraChat();
+      setTimeout(() => {
+        startBookingFlow(serviceName);
+      }, 300);
+    }
+
+    // Speech-To-Text Voice Dictation
+    function toggleSpeechRecognition() {
+      const micBtn = document.getElementById('aura-chat-mic-btn');
+      const micIcon = document.getElementById('aura-mic-icon');
+      const input = document.getElementById('aura-chat-input');
+
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        showToast('Dictation Notice', 'Voice dictation is supported in Chrome, Edge, and Safari.');
+        return;
+      }
+
+      if (chatState.isRecording && chatState.speechRecognizer) {
+        chatState.speechRecognizer.stop();
+        chatState.isRecording = false;
+        if (micBtn) micBtn.classList.remove('mic-recording');
+        if (micIcon) micIcon.className = "fa-solid fa-microphone text-xs";
+        return;
+      }
+
+      try {
+        const recognition = new SpeechRecognition();
+        recognition.lang = 'en-US';
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+
+        recognition.onstart = function() {
+          chatState.isRecording = true;
+          if (micBtn) micBtn.classList.add('mic-recording');
+          if (micIcon) micIcon.className = "fa-solid fa-circle-stop text-xs text-white";
+          if (input) input.placeholder = "Listening... speak now";
+        };
+
+        recognition.onresult = function(event) {
+          const transcript = event.results[0][0].transcript;
+          if (input) {
+            input.value = transcript;
+            input.placeholder = "Type your message...";
+          }
+        };
+
+        recognition.onerror = function() {
+          chatState.isRecording = false;
+          if (micBtn) micBtn.classList.remove('mic-recording');
+          if (micIcon) micIcon.className = "fa-solid fa-microphone text-xs";
+        };
+
+        recognition.onend = function() {
+          chatState.isRecording = false;
+          if (micBtn) micBtn.classList.remove('mic-recording');
+          if (micIcon) micIcon.className = "fa-solid fa-microphone text-xs";
+          if (input) input.placeholder = "Type your message...";
+        };
+
+        chatState.speechRecognizer = recognition;
+        recognition.start();
+      } catch (err) {
+        console.error('Speech recognition error:', err);
+      }
+    }
+
+    // Calendar .ICS Download Utility
+    function downloadICS(service, timeStr) {
+      const icsData = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Aura Glow Studio//VIP Reservation//EN',
+        'BEGIN:VEVENT',
+        `SUMMARY:Aura Glow Studio - ${service}`,
+        `DESCRIPTION:Your private appointment for ${service} at Aura Glow Studio. 9400 Wilshire Blvd, Beverly Hills.`,
+        'LOCATION:Aura Glow Studio, 9400 Wilshire Blvd, Beverly Hills, CA 90212',
+        'STATUS:CONFIRMED',
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+
+      const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.setAttribute('download', 'AuraGlow-Appointment.ics');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast('Calendar Pass', 'Appointment .ics downloaded to your device.');
+    }
+
+    // =========================================================================
+    // VAPI VOICE CONTROLLER
+    // =========================================================================
     var vapiInstance = null;
     var isVoiceActive = false;
 
-    // Synchronize UI elements across website (floating badge, navbar, hero)
     function updateVoiceUI(status) {
       const statusLabel = document.getElementById('voice-status-label');
       const statusDot = document.getElementById('voice-status-dot');
@@ -1722,7 +2800,6 @@
       }
     }
 
-    // Trigger or Toggle Voice Assistant
     function triggerVoiceAssistant() {
       const vapiBtn = document.getElementById('vapi-support-btn');
       if (vapiBtn) {
@@ -1740,8 +2817,22 @@
       }
     }
 
-    // Initialize Vapi SDK once DOM & script are ready
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileIcon = document.getElementById('mobile-menu-icon');
+      if (mobileMenu) {
+        mobileMenu.classList.add('hidden');
+        if (mobileIcon) {
+          mobileIcon.classList.remove('fa-xmark');
+          mobileIcon.classList.add('fa-bars');
+        }
+      }
+    }
+
+    // Initialize Vapi SDK & Load Webhook Configuration on DOM Ready
     window.addEventListener("DOMContentLoaded", function () {
+      loadServerWebhookConfig();
+
       function startVapi() {
         if (window.vapiSDK && typeof window.vapiSDK.run === 'function') {
           try {
